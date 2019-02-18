@@ -1,0 +1,1 @@
+CREATE DATABASE vetka_db;
