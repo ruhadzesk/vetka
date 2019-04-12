@@ -1,0 +1,13 @@
+<main class="form">
+  <div class="content">
+    <div class="person">
+      <label>name</label><input type="text" ng-model="model.name" />
+      <label>change_name</label><input type="checkbox" ng-model="model.change_name" />
+      <label>old_name</label><input type="text" ng-model="model.old_name" ng-if="model.change_name" />
+      <label>graduated</label><input type="number" ng-model="model.graduated" />
+      <label>profession</label><input type="text" ng-model="model.profession" />
+      <label>universe</label><input type="text" ng-model="model.universe" />
+    </div>
+    <button ng-click="send()">Отправить</button>
+  </div>
+</main>

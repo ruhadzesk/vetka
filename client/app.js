@@ -10,6 +10,7 @@ require('angular-sanitize');
 require('./components/api/api.module');
 
 require('./pages/home/home.module');
+require('./pages/form/form.module');
 
 moment.locale('ru');
 
@@ -17,7 +18,8 @@ var app = angular.module('vetka', [
   'ngRoute',
   'ngSanitize',
   'api',
-  'home'
+  'home',
+  'form'
 ]);
 
 // __CONFIG__ - object from webpack
