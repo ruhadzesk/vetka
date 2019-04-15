@@ -1,4 +1,5 @@
 require('./form.less');
+require('./checkbox.less');
 
 FormController.$inject = ['$scope', '$location', 'api'];
 function FormController($scope, $location, api) {

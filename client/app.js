@@ -1,5 +1,6 @@
 /* globals __CONFIG__ */
 require('./app.less');
+require('typeface-montserrat');
 
 var angular = require('angular');
 var moment = require('moment');

@@ -1,13 +1,218 @@
 <main class="form">
   <div class="content">
     <div class="person">
-      <label>name</label><input type="text" ng-model="model.name" />
-      <label>change_name</label><input type="checkbox" ng-model="model.change_name" />
-      <label>old_name</label><input type="text" ng-model="model.old_name" ng-if="model.change_name" />
-      <label>graduated</label><input type="number" ng-model="model.graduated" />
-      <label>profession</label><input type="text" ng-model="model.profession" />
-      <label>universe</label><input type="text" ng-model="model.universe" />
+      <h1>Личные данные</h1>
+
+      <field class="text">
+        <label>ФИО</label>
+        <input class="c5" type="text" ng-model="model.name"/>
+      </field>
+
+      <field class="checkbox">
+        <input type="checkbox" class="regular-checkbox" ng-model="model.change_name" />
+        <label class="checkbox-label">Менялась ли фамилия?</label>
+      </field>
+
+      <field class="text" ng-if="model.change_name">
+        <label>Старая фамилия</label>
+        <input class="c3" type="text" ng-model="model.old_name"/>
+      </field>
+
+      <field class="text multiply">
+        <label>Год выпуска</label>
+        <input class="c2" type="number" ng-model="model.graduated"/>
+      </field>
+
+      <field class="text multiply">
+        <label>Деятельность</label>
+        <input class="c4" type="text" ng-model="model.profession"/>
+      </field>
+
+      <field class="text">
+        <label>Учебное заведение</label>
+        <input class="c6" type="text" ng-model="model.universe"/>
+      </field>
+
+      <field class="checkbox">
+        <input type="checkbox" class="regular-checkbox" ng-model="model.children" />
+        <label class="checkbox-label">Есть дети?</label>
+      </field>
+
+      <field class="radio" ng-if="model.children">
+        <label>Учатся (учились) ли они в школе Самоопределения?</label>
+        <input type="radio" class="regular-radio" ng-model="model.children_study"  value="true">
+        <span>Да</span>
+        <input type="radio" class="regular-radio" ng-model="model.children_study"  value="false">
+        <span>Нет</span>
+        <input type="radio" class="regular-radio" ng-model="model.children_study"  value="other">
+        <span>Другое</span>
+        <input ng-if="model.children_study == 'other'" class="c6" type="text" ng-model="model.children_other"/>
+      </field>
+
+      <field class="radio">
+        <label>Оставите контакты для связи?</label>
+        <input type="radio" class="regular-radio" ng-model="model.contacts"  value="true">
+        <span>Да</span>
+        <input type="radio" class="regular-radio" ng-model="model.contacts"  value="teachers">
+        <span>Да, но только для преподавателей</span>
+        <input type="radio" class="regular-radio" ng-model="model.contacts"  value="false">
+        <span>Нет</span>
+      </field>
+
+      <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'">
+        <label>Телефон</label>
+        <input class="c4" type="text" ng-model="model.phone"/>
+      </field>
+
+      <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'" >
+        <label>E-mail</label>
+        <input class="c4" type="text" ng-model="model.email"/>
+      </field>
+
+      <!-- PHOTO -->
+
+      <field class="checkbox">
+        <input type="checkbox" class="regular-checkbox" ng-model="model.confirm" />
+        <label class="checkbox-label">Я подтверждаю свое согласие: На использование в качестве каналов передачи информации, содержащейся в обращении, открытых каналов связи сети Интернет. На обработку моих персональных данных в соответствии с федеральным законом РФ от 27.07.2006 № 152-ФЗ
+        «О персональных данных»</label>
+      </field>
+
+      <field class="text">
+        <label>Форма ответа</label>
+        <div class="tabs">
+          <div class="tab"
+            ng-class="{'active': model.profile_type == 'profile'}"
+            ng-click="model.profile_type = 'profile'">Анкета</div>
+          <div class="tab"
+            ng-class="{'active': model.profile_type == 'text'}"
+            ng-click="model.profile_type = 'text'">Эссе</div>
+          <div class="tab" ng-class="{'active': model.profile_type == 'video'}"
+            ng-click="model.profile_type = 'video'">Видео интервью</div>
+        </div>
+      </field>
+
+      <field class="text" ng-if="model.profile_type == 'video'" >
+        <label>Оставьте E-mail для согласования времени</label>
+        <input class="c4" type="text" ng-model="model.email"/>
+      </field>
+
+      <field class="text" ng-if="model.profile_type == 'text'" >
+        <label>Название</label>
+        <input class="c4" type="text" ng-model="model.profile_text_name"/>
+      </field>
+
+      <field class="text" ng-if="model.profile_type == 'text'" >
+        <label>Текст эссе</label>
+        <textarea ng-model="model.profile_text"> </textarea>
+      </field>
+        <div ng-if="model.profile_type == 'profile'">
+          <h1>Школа для меня</h1>
+
+          <field class="checkboxs">
+            <label>Считаете ли вы, что в школе действительно создавались условия важные для развития и становления личности, личностного самоопределения учеников? Если да, то какие возможности давала школа каждому учащемуся?</label>
+
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_laws" />
+              <div class="checkbox-label">участвовать в создании законов общей школьной жизни, в решении важных для всего школьного сообщества вопросов, в том числе связанных с учебным процессом;</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_humanity" />
+              <div class="checkbox-label">получить опыт уважения человеческого достоинства и принятия другого человека таким, каков он есть;;</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_moral" />
+              <div class="checkbox-label">возможность глубокого и неформального обсуждения мировоззренческих взглядов, этических проблем, нравственных ценностей;</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_freedom" />
+              <div class="checkbox-label">возможность свободно высказывать свою точу зрения;</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_choise" />
+              <div class="checkbox-label">получить опыт разнообразного выбора, понимания про себя, свои особенности, интересы; </div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conditions_initiative" />
+              <div class="checkbox-label">возможность проявлять и реализовывать инициативы;</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="conditions_other_checked" />
+              <div class="checkbox-label">другое</div>
+            </div>
+          </field>
+
+          <field>
+            <input class="c6" type="text" ng-if="conditions_other_checked" ng-model="conditions_other"/>
+          </field>
+
+          <field class="checkboxs  multiply">
+            <label>Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
+
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_responsibility" />
+              <div class="checkbox-label">ответственность, готовность принять риск на себя</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_perseverance" />
+              <div class="checkbox-label">настойчивость в достижении цели</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_creativity" />
+              <div class="checkbox-label">креативность</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_openness" />
+              <div class="checkbox-label">открытость</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_independence" />
+              <div class="checkbox-label">самостоятельность</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_prioritization" />
+              <div class="checkbox-label">умение расставлять приоритеты</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_communicativeness" />
+              <div class="checkbox-label">коммуникативные способности</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_analitial" />
+              <div class="checkbox-label">аналитические способности</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_teamwork" />
+              <div class="checkbox-label">умение работать в команде</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_leadership" />
+              <div class="checkbox-label">лидерские качества</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_design" />
+              <div class="checkbox-label">проектное мышление</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_reflexivity" />
+              <div class="checkbox-label">рефлексивность</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="model.conmpetitions_responsiveness" />
+              <div class="checkbox-label">готовность придти на помощь</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox" class="regular-checkbox" ng-model="conmpetitions_other_ckecked" />
+              <div class="checkbox-label">другое</div>
+            </div>
+          </field>
+
+          <field>
+            <input class="c6" type="text" ng-model="model.conmpetitions_other" ng-if="conmpetitions_other_ckecked"/>
+          </field>
+
+        </div>
+
     </div>
-    <button ng-click="send()">Отправить</button>
+    <div class="button"><button ng-click="send()">Отправить</button></div>
   </div>
 </main>
