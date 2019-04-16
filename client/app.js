@@ -12,6 +12,7 @@ require('./components/api/api.module');
 
 require('./pages/home/home.module');
 require('./pages/form/form.module');
+require('./pages/profile/profile.module');
 
 moment.locale('ru');
 
@@ -20,7 +21,8 @@ var app = angular.module('vetka', [
   'ngSanitize',
   'api',
   'home',
-  'form'
+  'form',
+  'profile'
 ]);
 
 // __CONFIG__ - object from webpack

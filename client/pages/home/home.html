@@ -1,12 +1,24 @@
-<main class="рщьу">
+<main class="home">
   <div class="content">
     <div class="header">
-      <input type="text" />
-      <a href="/form">Участвовать</a>
+      <input class="search c4" type="text"/> <button class="search-button">Q</button>
+      <div class="button right join"><button ng-click="join()">Участвовать</button></div>
     </div>
-    <div class="logo">Lorem ipsum... </div>
+    <div class="logo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac tincidunt nisl. Donec quis porta elit, sed convallis ligula. Nam id venenatis massa. Mauris aliquam vel sapien quis imperdiet. Vestibulum quis rutrum ex, vitae sodales diam. Curabitur vehicula dignissim risus, volutpat auctor erat. Morbi justo quam, blandit eu malesuada ut, faucibus ac felis. Ut semper congue aliquam. Ut ultrices ultrices lorem, non scelerisque ante vulputate quis. Fusce gravida magna ut orci fermentum, et rhoncus tellus finibus. Cras eu pretium orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra</div>
     <div class="list">
-      <div ng-repeat="item in items"> {{item}} </div>
+      <div class="item" ng-repeat="item in items">
+        <div class="stick" ng-class="item.type">{{item.type}}</div>
+        <div class="picture">
+          <!-- <img src="http://samara-pirogova.ru/wp-content/uploads/2015/06/userpic.png"  /> -->
+        </div>
+        <div class="article">
+          <div class="name">{{item.name}}</div>
+          <div class="text">Год окончпния школы: {{item.graduated}}</div>
+          <div class="text">Образование: {{item.university}} ОбразованиеОбраз ованиеОбразован иеОбразование Образование</div>
+          <div class="text">Профессиональная деятельность: {{item.profession}}</div>
+          <div class="button"><button ng-class="item.type" ng-click="goToProfile(item)">Читать</button></div>
+        </div>
+      </div>
     </div>
   </div>
 </main>

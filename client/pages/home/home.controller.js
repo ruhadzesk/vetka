@@ -2,24 +2,19 @@ require('./home.less');
 
 HomeController.$inject = ['$scope', '$location', 'api'];
 function HomeController($scope, $location, api) {
+
   $scope.getItems = function() {
-    api.exec("core.person_list", {status: 'approved'}).then(function(result){
+    api.exec("core.profile_list", {status: 'approved'}).then(function(result){
       $scope.items = result;
     });
   };
+  $scope.goToProfile = function(item) {
+    $location.path('/profile/'+item.id);
+  };
+  $scope.join = function() {
+    $location.path('/form');
+  };
 
   $scope.getItems();
-  // $scope.list = function() {
-  //   api.exec("core.person_list", {status: 'approved'});
-  // };
-  // $scope.add = function() {
-  //   api.exec("core.person_add", {
-  //     id: 1,
-  //     name: '1',
-  //     change_name: true,
-  //     graduated: new Date(),
-  //     status: 'approved'
-  //   });
-  // };
 }
 module.exports = HomeController;

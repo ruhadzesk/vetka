@@ -2,89 +2,71 @@ body {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
+  line-height: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
-.content {
-  width: 620px;
+
+.form {
+  width: 576px;
   margin: auto;
-  padding-bottom: 50px;
+  padding: 50px 0;
+  .button {
+    &.right {
+      width: 278px;
+      button {
+        width: 278px;
+      }
+    }
+    &.left {
+      width: 278px;
+      button {
+        width: 278px;
+      }
+    }
+  }
 }
+
 h1 {
   font-weight: 900;
   font-size: 42px;
   line-height: normal;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
-field {
-  // background-color: green;
-  margin-top: 20px;
-  display: block;
-  &.multiply {
-    display: inline-block;
-    margin-right: 18px;
-  }
-  label {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-  input {
-    outline: none;
-  }
-  &.radio {
-    label {
-      line-height: 15px;
-      color: #A1A6BB;
-      display: block;
-      margin: 0 0 20px;
-    }
-    input[type=radio] {
-      background: #FFFFFF;
+
+.c2 {width: 177px;}
+.c3 {width: 280px;}
+.c4 {width: 377px;}
+.c5 {width: 480px;}
+.c6 {width: 576px;}
+
+input {
+  outline: none;
+  &[type=radio]{
+    -webkit-appearance: none;
+    position: relative;
+    background: #FFFFFF;
+    border: 2px solid #E4E7EF;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin: 0 3px 0 0;
+    padding: 9px;
+    &:checked:after {
+      content: ' ';
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      font-size: 32px;
+      background: #5DD0F5;;
       border: 2px solid #E4E7EF;
       box-sizing: border-box;
       border-radius: 100px;
-      margin: 0 0 -4px 0;
-    }
-    span {
-      margin: 0 20px 0 0;
-    }
-    input[type=text] {
-      margin-top: 20px;
     }
   }
-  &.text {
-    label {
-      line-height: 15px;
-      color: #A1A6BB;
-      display: block;
-      margin: 0 15px 10px;
-    }
-  }
-  textarea {
-    display: inline-block;
-    width: 576px;
-    height: 284px;
-    background: #F0F2F7;
-    border: 1px solid #E3E8F0;
-    box-sizing: border-box;
-    border-radius: 4px;
-  }
-  &.checkboxs {
-    label {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 24px;
-    }
-    .checkbox-block {
-      display: block;
-      margin-top: 20px
-    }
-    &.multiply .checkbox-block {
-      display: inline-block;
-      width: 49%;
-      vertical-align: top;
-    }
-  }
-  input[type=text], input[type=number], {
+  &[type=text], &[type=number] {
     height: 42px;
     background: #F0F2F7;
     border: 1px solid #E3E8F0;
@@ -93,36 +75,15 @@ field {
     font-size: 14px;
     line-height: 18px;
     color: #3A405B;
-    padding: 0 15px;
-    &.c2 {
-      width: 177px;
-    }
-    &.c3 {
-      width: 280px;
-    }
-    &.c4 {
-      width: 377px;
-    }
-    &.c5{
-      width: 480px;
-    }
-    &.c6{
-      width: 576px;
-    }
+    padding: 0 18px;
   }
-  &.checkbox {
-    label {
-      color: #3A405B;
-      line-height: 16px;
-      padding-top: 2px;
-    }
-  }
-  input[type=checkbox]{
+  &[type=checkbox]{
+    -webkit-appearance: none;
+    position: relative;
     width: 20px;
     height: 20px;
     border-radius: 3px;
-    margin-bottom: -10px;
-    float: left;
+    margin: 0 3px 0 0;
     border: 2px solid #E4E7EF;
     box-sizing: border-box;
     border-radius: 3px;
@@ -130,47 +91,109 @@ field {
       background-color: #00E2AA;
       border: none;
     }
-  }
-  .checkbox-label {
-    padding-left: 30px;
-    display: block;
-  }
-  .tabs {
-    .tab {
-      &.active {
-        background: #F0F2F7;
-      }
-      border: 1px solid #E3E8F0;
-      box-sizing: border-box;
-      padding: 10px 46px;
-      display: inline-block;
-      margin-right: -5px;
-      &:first-child {
-        border-radius: 100px 0px 0px 100px;
-      }
-      &:last-child {
-        border-radius: 0px 100px 100px 0px;
-      }
+    &:checked:after {
+      content: '\2714';
+      font-size: 14px;
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      color: white;
     }
   }
 }
-.button {
-  margin: auto;
-  margin-top: 10px;
-  width: 165px;
-  button {
-    height: 42px;
-    background: #4BE1AB;
-    width: 165px;
-    border-radius: 100px;
-    border: none;
 
-    font-size: 20px;
-    line-height: 14px;
-    text-align: center;
-    letter-spacing: 1px;
-
-    color: #FFFFFF;
-  }
-
+textarea {
+  display: inline-block;
+  width: 576px;
+  height: 284px;
+  background: #F0F2F7;
+  border: 1px solid #E3E8F0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 11px 20px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
+
+.tabs {
+  .tab {
+    &.active {
+      background: #F0F2F7;
+    }
+    border: 1px solid #E3E8F0;
+    box-sizing: border-box;
+    padding: 10px 46px;
+    display: inline-block;
+    margin-right: -5px;
+    &:first-child {
+      border-radius: 100px 0px 0px 100px;
+    }
+    &:last-child {
+      border-radius: 0px 100px 100px 0px;
+    }
+  }
+}
+
+field {
+  // background-color: green;
+  margin-top: 20px;
+  display: block;
+  &.multiply {
+    display: inline-block;
+    margin-right: 16px;
+  }
+  &.multiply+& {
+    display: inline-block;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+    color: #A1A6BB;
+  }
+  span {
+    margin-right: 20px;
+    vertical-align: super;
+  }
+  &.text label {
+      margin-left: 18px;
+      margin-bottom: 10px;
+  }
+}
+
+.profile {
+  field {
+    margin-top:20px;
+  }
+  label {
+    font-weight: 500;
+    color: black;
+    line-height: 24px;
+    margin-bottom: 0;
+    margin-top:20px;
+  }
+  textarea {
+    margin-top: 20px;
+    height: 120px;
+  }
+  .checkboxs {
+    .checkbox-block{
+      margin-top:20px;
+    }
+    input[type=checkbox] {
+      float: left;
+    }
+    .checkbox-label {
+      margin-left:30px;
+    }
+    .checkbox-block.multiply {
+      display: inline-block;
+      width: 49%;
+      vertical-align: top;
+    }
+  }
+}
+
