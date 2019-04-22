@@ -1,4 +1,5 @@
-<main class="form">
+<main class="content">
+  <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
   <div class="form">
     <h1>Личные данные</h1>
     <field class="text">
@@ -59,7 +60,14 @@
       <input class="c4" type="text" ng-model="model.email"/>
     </field>
 
-    <!-- PHOTO -->
+    <field>
+      <label>Фотография</label>
+      <form id="avatar" action="/upload/" class="dropzone" ng-show="!model.photo">
+        <img ng-src="static/inc/i/avatar.svg" ng-if="!model.photo">
+      </form>
+      <img class="avatar-preview"ng-src="img/{{model.photo}}" ng-if="model.photo">
+    </field>
+
 
     <field class="checkbox">
       <input type="checkbox"  ng-model="model.confirm" />
@@ -81,10 +89,15 @@
     </field>
 
     <!-- VIDEO -->
-    <field class="text" ng-if="model.type == 'video'" >
+    <field class="text" ng-if="model.type == 'video' && !token" >
       <label>Оставьте E-mail для согласования времени</label>
       <input class="c4" type="text" ng-model="model.confirm_email"/>
     </field>
+    <field class="text" ng-if="model.type == 'video' && token" >
+      <label>Ссылка на видео</label>
+      <input class="c4" type="text" ng-model="model.video"/>
+    </field>
+
     <!-- TEXT -->
     <field class="text" ng-if="model.type == 'text'" >
       <label>Название</label>
@@ -94,7 +107,13 @@
       <label>Текст эссе</label>
       <textarea ng-model="model.profile_text"> </textarea>
     </field>
-    <div class="button center" ng-if="model.type != 'profile'"><button ng-click="send()">Отправить</button></div>
+    <div class="button center" ng-if="model.type != 'profile' && !token">
+      <button ng-click="send()">Отправить</button>
+    </div>
+    <div class="button center" ng-if="model.type != 'profile' && token">
+      <button ng-click="publish()">Опубликовать</button>
+    </div>
+
     <!-- PROFILE -->
     <div class="profile" ng-if="model.type == 'profile'">
       <div class="step1" ng-if="step == 1">
@@ -116,7 +135,7 @@
             <div class="checkbox-label">{{competition.name}}</div>
           </div>
         </field>
-        <field ng-if="model.competitions.other_ckecked">
+        <field ng-if="model.competitions.other_checked">
           <input class="c6" type="text" ng-model="model.competitions.other" />
         </field>
         <field>
@@ -135,7 +154,7 @@
             <div class="checkbox-label">{{space.name}}</div>
           </div>
         </field>
-        <field ng-if="model.spaces.other_ckecked">
+        <field ng-if="model.spaces.other_checked">
           <input class="c6" type="text" ng-model="model.spaces.other" />
         </field>
         <field>
@@ -230,7 +249,8 @@
           </div>
         </field>
         <div class="button left"><button ng-click="prev()">Предыдущий шаг</button></div>
-        <div class="button right"><button ng-click="send()">Отправить</button></div>
+        <div class="button right" ng-if="token"><button ng-click="publish()">Опубликовать</button></div>
+        <div class="button right" ng-if="!token"><button ng-click="send()">Отправить</button></div>
       </div>
     </div>
   </div>

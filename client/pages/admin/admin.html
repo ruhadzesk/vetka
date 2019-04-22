@@ -1,0 +1,10 @@
+<main class="admin">
+  <div>
+    <form class="c3" ng-submit="login()">
+      <input type="text" class="c3" ng-model="user" />
+      <input type="password"  class="c3" ng-model="password" />
+      <div class="button "><button type="submit">Войти</button></div>
+      <div class="error" ng-if="error">Неправильная пара логин/пароль</div>
+    </form>
+  </div>
+</main>

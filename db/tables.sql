@@ -12,10 +12,12 @@ CREATE TABLE core.profiles(
   contacts text,
   phone text,
   email text,
+  photo text,
   confirm boolean,
   type text,
   --video
   confirm_email text,
+  video text,
   --text
   text_name text,
   profile_text text,
@@ -48,3 +50,6 @@ CREATE TABLE core.profiles(
   search tsvector
 );
 
+CREATE TABLE core.tokens(
+  token text
+);

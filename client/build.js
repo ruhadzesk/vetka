@@ -4,6 +4,13 @@ const argv = require('yargs').argv;
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SymlinkWebpackPlugin = require('symlink-webpack-plugin');
+const execSync = require('child_process').execSync;
+
+execSync('rm -rf /vagrant/build');
+execSync('mkdir /vagrant/build');
+execSync('sudo ln -s /opt/files /vagrant/build/img');
+
 
 let webpackConfig = {
     entry: {
@@ -52,6 +59,17 @@ let webpackConfig = {
                 to: path.join(__dirname, '..', 'build', 'index.html')
             }
         ]),
+        new CopyWebpackPlugin([
+            {
+                from: path.join(__dirname, 'inc/'),
+                to: path.join(__dirname, '..', 'build', 'static','inc')
+            }
+        ]),
+        // new SymlinkWebpackPlugin({
+        //     origin: path.join('opt', 'files'),
+        //     symlink: path.join('img'),
+        //     force: true
+        // }),
         // new webpack.DefinePlugin({
         //     __CONFIG__: JSON.stringify({
         //         tokenValidTime: config.tokenValidTime,

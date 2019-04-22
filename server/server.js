@@ -8,6 +8,25 @@ const Pool = require('pg').Pool;
 
 const SERVER_PORT = 3000;
 
+const multer  = require('multer');
+
+let upload = multer({storage: multer.diskStorage({
+    destination: async function (req, file, cb) {
+        cb(null, '/opt/files');
+        // let dest = path.normalize(path.join(config.filesRoot, req.body.dir));
+        // if (dest.indexOf(config.filesRoot) === 0) {
+        //     await exec(`mkdir -p ${dest}`);
+        //     cb(null, dest);
+        // } else {
+        //     cb({status: 403}, null);
+        // }
+
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+})});
+
 
 let app = express();
 app.use(bodyParser.json());
@@ -50,6 +69,20 @@ app.post(`/ajax/`, async(req, res) => {
   }
   res.json({result: result});
 });
+
+
+app.post(
+    `/upload/`,
+    upload.single('file'),
+    async function(req, res, next) {
+      console.log(req, res)
+    },
+    async function(req, res) {
+      res.json({
+          uploaded: true
+      });
+    }
+);
 
 let httpServer = http.createServer(app);
 

@@ -1,24 +1,44 @@
 <main class="home">
   <div class="content">
-    <div class="header">
-      <input class="search c4" type="text"/> <button class="search-button">Q</button>
+    <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
+    <div class="header" ng-if="!token">
+      <form class="search" ng-submit="getItems(search)">
+        <input class="search c4" type="text" ng-model="search" />
+        <button class="search-button" type="submit">
+          <img src="/static/inc/i/search.svg" />
+        </button>
+      </form>
       <div class="button right join"><button ng-click="join()">Участвовать</button></div>
     </div>
-    <div class="logo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac tincidunt nisl. Donec quis porta elit, sed convallis ligula. Nam id venenatis massa. Mauris aliquam vel sapien quis imperdiet. Vestibulum quis rutrum ex, vitae sodales diam. Curabitur vehicula dignissim risus, volutpat auctor erat. Morbi justo quam, blandit eu malesuada ut, faucibus ac felis. Ut semper congue aliquam. Ut ultrices ultrices lorem, non scelerisque ante vulputate quis. Fusce gravida magna ut orci fermentum, et rhoncus tellus finibus. Cras eu pretium orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra</div>
-    <div class="list">
+
+    <div class="logo" ng-if="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac tincidunt nisl. Donec quis porta elit, sed convallis ligula. Nam id venenatis massa. Mauris aliquam vel sapien quis imperdiet. Vestibulum quis rutrum ex, vitae sodales diam. Curabitur vehicula dignissim risus, volutpat auctor erat. Morbi justo quam, blandit eu malesuada ut, faucibus ac felis. Ut semper congue aliquam. Ut ultrices ultrices lorem, non scelerisque ante vulputate quis. Fusce gravida magna ut orci fermentum, et rhoncus tellus finibus. Cras eu pretium orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra</div>
+    <div class="list" ng-if="items">
       <div class="item" ng-repeat="item in items">
         <div class="stick" ng-class="item.type">{{item.type}}</div>
         <div class="picture">
-          <!-- <img src="http://samara-pirogova.ru/wp-content/uploads/2015/06/userpic.png"  /> -->
+          <img ng-if="item.photo != ''" ng-src="img/{{item.photo}}"  />
+          <img class="no-user" ng-if="item.photo == ''" src="static/inc/i/no-user.svg" />
         </div>
         <div class="article">
           <div class="name">{{item.name}}</div>
           <div class="text">Год окончпния школы: {{item.graduated}}</div>
           <div class="text">Образование: {{item.university}} ОбразованиеОбраз ованиеОбразован иеОбразование Образование</div>
           <div class="text">Профессиональная деятельность: {{item.profession}}</div>
-          <div class="button"><button ng-class="item.type" ng-click="goToProfile(item)">Читать</button></div>
+          <div class="button" ng-if="item.status == 'published'" >
+            <button ng-class="item.type" ng-click="goToProfile(item)">Читать</button>
+          </div>
+          <div class="button" ng-if="item.status == 'new'" >
+            <button ng-class="item.type" ng-click="goToProfileEdit(item)">Модерировать</button>
+          </div>
         </div>
       </div>
     </div>
+    <div class="no-posts" ng-if="!items">
+      <img src="/static/inc/i/head.svg" />
+      <img src="/static/inc/i/body.svg" />
+      <div class="text">Нет результатов. Попробуйте другие критерии поиска.</div>
+    </div>
+    <div class="adminLink" ng-click="goAdmin()" ng-if="!token">Модераторам</div>
+    <div class="adminLink" ng-click="logout()" ng-if="token">Выйти</div>
   </div>
 </main>

@@ -5,12 +5,38 @@ body {
   line-height: 16px;
   font-size: 14px;
   letter-spacing: 1px;
+  input {
+    font-family: 'Montserrat';
+  }
 }
+.dropzone {
+  width: 575px;
+  height: 227px;
 
+  border: 2px dashed #A5AEA8;
+  border-radius: 4px;
+  text-align: center;
+  img {
+    padding-top: 80px
+  }
+}
+.dz-details, .dz-size, .dz-filename, .dz-progress, .dz-success-mark, .dz-error-mark {
+  display: none;
+}
+.dz-default.dz-message {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration-line: underline;
+  color: #3B55E6;
+  margin-top: 165px;
+}
 .form {
   width: 576px;
   margin: auto;
-  padding: 50px 0;
+  padding: 0 0 50px 0;
   .button {
     &.right {
       width: 278px;
@@ -25,14 +51,18 @@ body {
       }
     }
   }
+  .avatar-preview {
+    width: 100%;
+  }
 }
 
 h1 {
   font-weight: 900;
   font-size: 42px;
   line-height: normal;
-  margin-top: 40px;
   margin-bottom: 10px;
+  padding-top: 40px;
+  margin-top: 0;
 }
 
 .c2 {width: 177px;}
@@ -66,7 +96,7 @@ input {
       border-radius: 100px;
     }
   }
-  &[type=text], &[type=number] {
+  &[type=text], &[type=number], &[type=password] {
     height: 42px;
     background: #F0F2F7;
     border: 1px solid #E3E8F0;
