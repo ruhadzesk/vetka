@@ -1,259 +1,270 @@
-<main class="content">
-  <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
-  <div class="form">
-    <h1>Личные данные</h1>
-    <field class="text">
-      <label>ФИО</label>
-      <input class="c5" type="text" ng-model="model.name"/>
-    </field>
-    <field class="checkbox">
-      <input type="checkbox" ng-model="model.name_changed" />
-      <span>Менялась ли фамилия?</span>
-    </field>
-    <field class="text" ng-if="model.name_changed">
-      <label>Старая фамилия</label>
-      <input class="c3" type="text" ng-model="model.name_old"/>
-    </field>
-    <field class="text multiply">
-      <label>Год выпуска</label>
-      <input class="c2" type="number" ng-model="model.graduated"/>
-    </field>
-    <field class="text">
-      <label>Деятельность</label>
-      <input class="c4" type="text" ng-model="model.profession"/>
-    </field>
-    <field class="text">
-      <label>Учебное заведение</label>
-      <input class="c6" type="text" ng-model="model.university"/>
-    </field>
-    <field class="checkbox">
-      <input type="checkbox" ng-model="model.children" />
-      <span>Есть дети?</span>
-    </field>
-    <field ng-if="model.children">
-      <label>Учатся (учились) ли они в школе Самоопределения?</label>
-      <input type="radio" ng-model="model.children_study"  value="true">
-      <span>Да</span>
-      <input type="radio" ng-model="model.children_study"  value="false">
-      <span>Нет</span>
-      <input type="radio" ng-model="model.children_study"  value="other">
-      <span>Другое</span>
-    </field>
-    <field ng-if="model.children && model.children_study == 'other'">
-      <input  class="c6" type="text" ng-model="model.children_other"/>
-    </field>
-    <field>
-      <label>Оставите контакты для связи?</label>
-      <input type="radio" ng-model="model.contacts"  value="true">
-      <span>Да</span>
-      <input type="radio" ng-model="model.contacts"  value="teachers">
-      <span>Да, но только для преподавателей</span>
-      <input type="radio" ng-model="model.contacts"  value="false">
-      <span>Нет</span>
-    </field>
-    <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'">
-      <label>Телефон</label>
-      <input class="c4" type="text" ng-model="model.phone"/>
-    </field>
-    <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'" >
-      <label>E-mail</label>
-      <input class="c4" type="text" ng-model="model.email"/>
-    </field>
+<main class="form-page">
+  <div class="content">
 
-    <field>
-      <label>Фотография</label>
-      <form id="avatar" action="/upload/" class="dropzone" ng-show="!model.photo">
-        <img ng-src="static/inc/i/avatar.svg" ng-if="!model.photo">
-      </form>
-      <img class="avatar-preview"ng-src="img/{{model.photo}}" ng-if="model.photo">
-    </field>
+    <div class="header">
+      <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
+    </div>
+
+    <div class="form">
+
+      <h1>Личные данные</h1>
+      <field class="text">
+        <label>ФИО</label>
+        <input class="c5" type="text" ng-model="model.name"/>
+      </field>
+      <field class="checkbox">
+        <input type="checkbox" ng-model="model.name_changed" />
+        <span>Менялась ли фамилия?</span>
+      </field>
+      <field class="text" ng-if="model.name_changed">
+        <label>Старая фамилия</label>
+        <input class="c3" type="text" ng-model="model.name_old"/>
+      </field>
+      <field class="text multiply">
+        <label>Год выпуска</label>
+        <input class="c2" type="number" ng-model="model.graduated"/>
+      </field>
+      <field class="text">
+        <label>Деятельность</label>
+        <input class="c4" type="text" ng-model="model.profession"/>
+      </field>
+      <field class="text">
+        <label>Учебное заведение</label>
+        <input class="c6" type="text" ng-model="model.university"/>
+      </field>
+      <field class="checkbox">
+        <input type="checkbox" ng-model="model.children" />
+        <span>Есть дети?</span>
+      </field>
+      <field ng-if="model.children">
+        <label>Учатся (учились) ли они в школе Самоопределения?</label>
+        <input type="radio" ng-model="model.children_study"  value="true">
+        <span>Да</span>
+        <input type="radio" ng-model="model.children_study"  value="false">
+        <span>Нет</span>
+        <input type="radio" ng-model="model.children_study"  value="other">
+        <span>Другое</span>
+      </field>
+      <field ng-if="model.children && model.children_study == 'other'">
+        <input  class="c6" type="text" ng-model="model.children_other"/>
+      </field>
+      <field>
+        <label>Оставите контакты для связи?</label>
+        <input type="radio" ng-model="model.contacts"  value="true">
+        <span>Да</span>
+        <input type="radio" ng-model="model.contacts"  value="teachers">
+        <span>Да, но только для преподавателей</span>
+        <input type="radio" ng-model="model.contacts"  value="false">
+        <span>Нет</span>
+      </field>
+      <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'">
+        <label>Телефон</label>
+        <input class="c4" type="text" ng-model="model.phone"/>
+      </field>
+      <field class="text" ng-if="model.contacts == 'true' || model.contacts == 'teachers'" >
+        <label>E-mail</label>
+        <input class="c4" type="text" ng-model="model.email"/>
+      </field>
+
+      <field>
+        <label>Фотография</label>
+        <!-- <form id="avatar" action="/upload/" class="dropzone" >
+        </form> -->
+        <div class="drop-area" ng-hide="model.photo">
+          <!-- <img ng-src="static/inc/i/avatar.svg" ng-if="!model.photo"> -->
+          <div id="avatar" > </div>
+        </div>
+        <img class="avatar-preview"ng-src="img/{{model.photo}}" ng-if="model.photo">
+      </field>
+
+      <field class="checkbox">
+        <input type="checkbox"  ng-model="model.confirm" />
+        <span class="checkbox-label">Я подтверждаю свое согласие: На использование в качестве каналов передачи информации, содержащейся в обращении, открытых каналов связи сети Интернет. На обработку моих персональных данных в соответствии с федеральным законом РФ от 27.07.2006 № 152-ФЗ
+        «О персональных данных»</span>
+      </field>
+
+      <field class="text">
+        <label>Форма ответа</label>
+        <div class="tabs">
+          <div class="tab"
+            ng-class="{'active': model.type == 'profile'}"
+            ng-click="model.type = 'profile'">Анкета</div>
+          <div class="tab"
+            ng-class="{'active': model.type == 'text'}"
+            ng-click="model.type = 'text'">Эссе</div>
+          <div class="tab" ng-class="{'active': model.type == 'video'}"
+            ng-click="model.type = 'video'">Видео интервью</div>
+        </div>
+      </field>
+
+      <!-- VIDEO -->
+      <field class="text" ng-if="model.type == 'video' && !token" >
+        <label>Оставьте E-mail для согласования времени</label>
+        <input class="c4" type="text" ng-model="model.confirm_email"/>
+      </field>
+      <field class="text" ng-if="model.type == 'video' && token" >
+        <label>Ссылка на видео</label>
+        <input class="c4" type="text" ng-model="model.video"/>
+      </field>
+
+      <!-- TEXT -->
+      <field class="text" ng-if="model.type == 'text'" >
+        <label>Название</label>
+        <input class="c4" type="text" ng-model="model.text_name"/>
+      </field>
+      <field class="text" ng-if="model.type == 'text'" >
+        <label>Текст эссе</label>
+        <textarea ng-model="model.profile_text"> </textarea>
+      </field>
 
 
-    <field class="checkbox">
-      <input type="checkbox"  ng-model="model.confirm" />
-      <span class="checkbox-label">Я подтверждаю свое согласие: На использование в качестве каналов передачи информации, содержащейся в обращении, открытых каналов связи сети Интернет. На обработку моих персональных данных в соответствии с федеральным законом РФ от 27.07.2006 № 152-ФЗ
-      «О персональных данных»</span>
-    </field>
-    <field class="text">
-      <label>Форма ответа</label>
-      <div class="tabs">
-        <div class="tab"
-          ng-class="{'active': model.type == 'profile'}"
-          ng-click="model.type = 'profile'">Анкета</div>
-        <div class="tab"
-          ng-class="{'active': model.type == 'text'}"
-          ng-click="model.type = 'text'">Эссе</div>
-        <div class="tab" ng-class="{'active': model.type == 'video'}"
-          ng-click="model.type = 'video'">Видео интервью</div>
+      <div class="button center" ng-if="model.type != 'profile' && !token">
+        <button ng-click="send()">Отправить</button>
       </div>
-    </field>
+      <div class="button center" ng-if="model.type != 'profile' && token">
+        <button ng-click="publish()">Опубликовать</button>
+      </div>
 
-    <!-- VIDEO -->
-    <field class="text" ng-if="model.type == 'video' && !token" >
-      <label>Оставьте E-mail для согласования времени</label>
-      <input class="c4" type="text" ng-model="model.confirm_email"/>
-    </field>
-    <field class="text" ng-if="model.type == 'video' && token" >
-      <label>Ссылка на видео</label>
-      <input class="c4" type="text" ng-model="model.video"/>
-    </field>
-
-    <!-- TEXT -->
-    <field class="text" ng-if="model.type == 'text'" >
-      <label>Название</label>
-      <input class="c4" type="text" ng-model="model.text_name"/>
-    </field>
-    <field class="text" ng-if="model.type == 'text'" >
-      <label>Текст эссе</label>
-      <textarea ng-model="model.profile_text"> </textarea>
-    </field>
-    <div class="button center" ng-if="model.type != 'profile' && !token">
-      <button ng-click="send()">Отправить</button>
-    </div>
-    <div class="button center" ng-if="model.type != 'profile' && token">
-      <button ng-click="publish()">Опубликовать</button>
-    </div>
-
-    <!-- PROFILE -->
-    <div class="profile" ng-if="model.type == 'profile'">
-      <div class="step1" ng-if="step == 1">
-        <h1>Школа для меня</h1>
-        <field class="checkboxs">
-          <label>Считаете ли вы, что в школе действительно создавались условия важные для развития и становления личности, личностного самоопределения учеников? Если да, то какие возможности давала школа каждому учащемуся?</label>
-          <div class="checkbox-block" ng-repeat="condition in conditionsView">
-            <input type="checkbox"  ng-model="model.conditions[condition.field]" />
-            <div class="checkbox-label">{{condition.name}}</div>
+      <!-- PROFILE -->
+      <div class="profile" ng-if="model.type == 'profile'">
+        <div class="step1" ng-if="step == 1">
+          <h1>Школа для меня</h1>
+          <field class="checkboxs">
+            <label>Считаете ли вы, что в школе действительно создавались условия важные для развития и становления личности, личностного самоопределения учеников? Если да, то какие возможности давала школа каждому учащемуся?</label>
+            <div class="checkbox-block" ng-repeat="condition in conditionsView">
+              <input type="checkbox"  ng-model="model.conditions[condition.field]" />
+              <div class="checkbox-label">{{condition.name}}</div>
+            </div>
+          </field>
+          <field ng-if="model.conditions.other_checked" >
+            <input class="c6" type="text" ng-model="model.conditions.other"/>
+          </field>
+          <field class="checkboxs">
+            <label>Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
+            <div class="checkbox-block multiply" ng-repeat="competition in competitionsView">
+              <input type="checkbox"  ng-model="model.competitions[competition.field]" />
+              <div class="checkbox-label">{{competition.name}}</div>
+            </div>
+          </field>
+          <field ng-if="model.competitions.other_checked">
+            <input class="c6" type="text" ng-model="model.competitions.other" />
+          </field>
+          <field>
+            <label>Какие из этих качеств оказались самыми нужными в вашей взрослой жизни?</label>
+            <textarea ng-model="model.most_needed_quality"> </textarea>
+          </field>
+          <field class="checkboxs">
+            <label>(МЕСТА!!!)Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
+            <div class="checkbox-block" ng-repeat="space in spacesViewLong">
+              <input type="checkbox"  ng-model="model.spaces[space.field]" />
+              <div class="checkbox-label">{{space.name}}</div>
+            </div>
+            <br />
+            <div class="checkbox-block multiply" ng-repeat="space in spacesViewShort">
+              <input type="checkbox"  ng-model="model.spaces[space.field]" />
+              <div class="checkbox-label">{{space.name}}</div>
+            </div>
+          </field>
+          <field ng-if="model.spaces.other_checked">
+            <input class="c6" type="text" ng-model="model.spaces.other" />
+          </field>
+          <field>
+            <label>Чего, важного для вашего развития, не хватало в  школе, какие дефициты обнаружились после ее окончания, что вы посоветуете изменить в школьной жизни?</label>
+            <textarea ng-model="model.deficiencies"> </textarea>
+          </field>
+          <field>
+            <label>Общение с кем из учителей было для вас особенно важным, почему?</label>
+            <textarea ng-model="model.teachers"> </textarea>
+          </field>
+          <field>
+            <label>Помогла ли школа определить будущую профессиональную область? Каким образом? Что, на ваш взгляд, важно делать в школе в этом направлении?</label>
+            <textarea ng-model="model.profession_choose"> </textarea>
+          </field>
+          <div class="button right">
+            <button ng-click="next()">Следующий шаг</button>
           </div>
-        </field>
-        <field ng-if="model.conditions.other_checked" >
-          <input class="c6" type="text" ng-model="model.conditions.other"/>
-        </field>
-        <field class="checkboxs">
-          <label>Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
-          <div class="checkbox-block multiply" ng-repeat="competition in competitionsView">
-            <input type="checkbox"  ng-model="model.competitions[competition.field]" />
-            <div class="checkbox-label">{{competition.name}}</div>
-          </div>
-        </field>
-        <field ng-if="model.competitions.other_checked">
-          <input class="c6" type="text" ng-model="model.competitions.other" />
-        </field>
-        <field>
-          <label>Какие из этих качеств оказались самыми нужными в вашей взрослой жизни?</label>
-          <textarea ng-model="model.most_needed_quality"> </textarea>
-        </field>
-        <field class="checkboxs">
-          <label>(МЕСТА!!!)Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
-          <div class="checkbox-block" ng-repeat="space in spacesViewLong">
-            <input type="checkbox"  ng-model="model.spaces[space.field]" />
-            <div class="checkbox-label">{{space.name}}</div>
-          </div>
-          <br />
-          <div class="checkbox-block multiply" ng-repeat="space in spacesViewShort">
-            <input type="checkbox"  ng-model="model.spaces[space.field]" />
-            <div class="checkbox-label">{{space.name}}</div>
-          </div>
-        </field>
-        <field ng-if="model.spaces.other_checked">
-          <input class="c6" type="text" ng-model="model.spaces.other" />
-        </field>
-        <field>
-          <label>Чего, важного для вашего развития, не хватало в  школе, какие дефициты обнаружились после ее окончания, что вы посоветуете изменить в школьной жизни?</label>
-          <textarea ng-model="model.deficiencies"> </textarea>
-        </field>
-        <field>
-          <label>Общение с кем из учителей было для вас особенно важным, почему?</label>
-          <textarea ng-model="model.teachers"> </textarea>
-        </field>
-        <field>
-          <label>Помогла ли школа определить будущую профессиональную область? Каким образом? Что, на ваш взгляд, важно делать в школе в этом направлении?</label>
-          <textarea ng-model="model.profession_choose"> </textarea>
-        </field>
-        <div class="button right">
-          <button ng-click="next()">Следующий шаг</button>
+        </div>
+        <div class="step2" ng-if="step == 2">
+          <h1>Я для школы</h1>
+          <field>
+            <label>Где, когда и чему вы учились или учитесь после школы?</label>
+            <textarea ng-model="model.study_after_school"> </textarea>
+          </field>
+          <field>
+            <label>Если учитесь сейчас или закончили недавно, можете ли посоветовать старшеклассникам поступать в это учебное заведение? На какой факультет?</label>
+            <textarea ng-model="model.university_for_admission"> </textarea>
+          </field>
+          <field>
+            <label>Меняли ли профессиональную траекторию в жизни, осваивали ли новое дело уже взрослым? Почему, зачем, довольны ли? Считаете ли вы, что старшеклассников следует готовить к тому, что в течение жизни, возможно, придётся менять профессию, род занятий?</label>
+            <textarea ng-model="model.change_profession"> </textarea>
+          </field>
+          <field>
+            <label>Приходилось ли Вам бросать учебу, менять учебное заведение? Почему? Страшно ли это?</label>
+            <textarea ng-model="model.change_university"> </textarea>
+          </field>
+          <field>
+            <label>Какие качества, навыки считаете важными для своей профессиональной области? Как их можно, на ваш взгляд, наращивать в школе?</label>
+            <textarea ng-model="model.profession_quality"> </textarea>
+          </field>
+          <field>
+            <label>Какие предметные умения, знания важны для поступления и успешного обучения в учебном заведении, которое вы закончили или в котором вы учитесь сейчас?</label>
+            <textarea ng-model="model.university_quality"> </textarea>
+          </field>
+          <field>
+            <label>Что самое интересное в Вашей профессии? Что бы вы посоветовали, или от чего бы предостерегли тех, кто хочет начать этим заниматься?</label>
+            <textarea ng-model="model.profession_interests"> </textarea>
+          </field>
+          <field>
+            <label>Какие шаги, на ваш взгляд, можно сделать для того, чтобы узнать больше о профессии, понять, подходит ли она тебе?</label>
+            <textarea ng-model="model.profession_education_points"> </textarea>
+          </field>
+          <field>
+            <label>Советуете ли вы на основе своего опыта заканчивать 11 классов или после 9 поступать в среднее учебное заведение?</label>
+            <textarea ng-model="model.high_school_graduate"> </textarea>
+          </field>
+          <field>
+            <label>Важен ли для вас и после школы круг школьного общения, школьной дружбы?</label>
+            <textarea ng-model="model.schoolmates"> </textarea>
+          </field>
+          <field>
+            <label>Зачем нужна школа сегодня, когда существуют другие возможности освоения знаний?</label>
+            <textarea ng-model="model.school_alteatives"> </textarea>
+          </field>
+          <field class="checkboxs">
+            <label>Готовы ли вы помочь сегодняшним школьникам чем-то из перечисленного:</label>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.conference"/>
+              <div class="checkbox-label">прийти в школу пообщаться с нынешними учениками, ответить на вопросы, рассказать о профессии или своем увлечении</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.internship"/>
+              <div class="checkbox-label">принять старшеклассника на короткую стажировку</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.master_class_checked"/>
+              <div class="checkbox-label">провести занятие или мастер-класс</div>
+              <field> <input type="text" class="c6"  ng-if="model.students_help.master_class_checked" ng-model="model.students_help.master_class" /> </field>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.lyceum"/>
+              <div class="checkbox-label">поучаствовать в Лицее, исторической игре или другом событии</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.lecture"/>
+              <div class="checkbox-label">прочитать лекцию или провести интерактивное занятие в Университете для старшеклассников</div>
+            </div>
+            <div class="checkbox-block">
+              <input type="checkbox"  ng-model="model.students_help.other_checked"/>
+              <div class="checkbox-label">другое</div>
+              <field> <input class="c6" type="text" ng-if="model.students_help.other_checked" ng-model="model.students_help.other" /> </field>
+            </div>
+          </field>
+          <div class="button left"><button ng-click="prev()">Предыдущий шаг</button></div>
+          <div class="button right" ng-if="token"><button ng-click="publish()">Опубликовать</button></div>
+          <div class="button right" ng-if="!token"><button ng-click="send()">Отправить</button></div>
         </div>
       </div>
-      <div class="step2" ng-if="step == 2">
-        <h1>Я для школы</h1>
-        <field>
-          <label>Где, когда и чему вы учились или учитесь после школы?</label>
-          <textarea ng-model="model.study_after_school"> </textarea>
-        </field>
-        <field>
-          <label>Если учитесь сейчас или закончили недавно, можете ли посоветовать старшеклассникам поступать в это учебное заведение? На какой факультет?</label>
-          <textarea ng-model="model.university_for_admission"> </textarea>
-        </field>
-        <field>
-          <label>Меняли ли профессиональную траекторию в жизни, осваивали ли новое дело уже взрослым? Почему, зачем, довольны ли? Считаете ли вы, что старшеклассников следует готовить к тому, что в течение жизни, возможно, придётся менять профессию, род занятий?</label>
-          <textarea ng-model="model.change_profession"> </textarea>
-        </field>
-        <field>
-          <label>Приходилось ли Вам бросать учебу, менять учебное заведение? Почему? Страшно ли это?</label>
-          <textarea ng-model="model.change_university"> </textarea>
-        </field>
-        <field>
-          <label>Какие качества, навыки считаете важными для своей профессиональной области? Как их можно, на ваш взгляд, наращивать в школе?</label>
-          <textarea ng-model="model.profession_quality"> </textarea>
-        </field>
-        <field>
-          <label>Какие предметные умения, знания важны для поступления и успешного обучения в учебном заведении, которое вы закончили или в котором вы учитесь сейчас?</label>
-          <textarea ng-model="model.university_quality"> </textarea>
-        </field>
-        <field>
-          <label>Что самое интересное в Вашей профессии? Что бы вы посоветовали, или от чего бы предостерегли тех, кто хочет начать этим заниматься?</label>
-          <textarea ng-model="model.profession_interests"> </textarea>
-        </field>
-        <field>
-          <label>Какие шаги, на ваш взгляд, можно сделать для того, чтобы узнать больше о профессии, понять, подходит ли она тебе?</label>
-          <textarea ng-model="model.profession_education_points"> </textarea>
-        </field>
-        <field>
-          <label>Советуете ли вы на основе своего опыта заканчивать 11 классов или после 9 поступать в среднее учебное заведение?</label>
-          <textarea ng-model="model.high_school_graduate"> </textarea>
-        </field>
-        <field>
-          <label>Важен ли для вас и после школы круг школьного общения, школьной дружбы?</label>
-          <textarea ng-model="model.schoolmates"> </textarea>
-        </field>
-        <field>
-          <label>Зачем нужна школа сегодня, когда существуют другие возможности освоения знаний?</label>
-          <textarea ng-model="model.school_alteatives"> </textarea>
-        </field>
-        <field class="checkboxs">
-          <label>Готовы ли вы помочь сегодняшним школьникам чем-то из перечисленного:</label>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.conference"/>
-            <div class="checkbox-label">прийти в школу пообщаться с нынешними учениками, ответить на вопросы, рассказать о профессии или своем увлечении</div>
-          </div>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.internship"/>
-            <div class="checkbox-label">принять старшеклассника на короткую стажировку</div>
-          </div>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.master_class_checked"/>
-            <div class="checkbox-label">провести занятие или мастер-класс</div>
-            <field> <input type="text" class="c6"  ng-if="model.students_help.master_class_checked" ng-model="model.students_help.master_class" /> </field>
-          </div>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.lyceum"/>
-            <div class="checkbox-label">поучаствовать в Лицее, исторической игре или другом событии</div>
-          </div>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.lecture"/>
-            <div class="checkbox-label">прочитать лекцию или провести интерактивное занятие в Университете для старшеклассников</div>
-          </div>
-          <div class="checkbox-block">
-            <input type="checkbox"  ng-model="model.students_help.other_checked"/>
-            <div class="checkbox-label">другое</div>
-            <field> <input class="c6" type="text" ng-if="model.students_help.other_checked" ng-model="model.students_help.other" /> </field>
-          </div>
-        </field>
-        <div class="button left"><button ng-click="prev()">Предыдущий шаг</button></div>
-        <div class="button right" ng-if="token"><button ng-click="publish()">Опубликовать</button></div>
-        <div class="button right" ng-if="!token"><button ng-click="send()">Отправить</button></div>
-      </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </main>

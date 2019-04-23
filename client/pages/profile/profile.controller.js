@@ -14,7 +14,6 @@ function ProfileController($scope, $location, api, $routeParams, $sce) {
     {field: 'freedom', name:'возможность свободно высказывать свою точу зрения;'},
     {field: 'choise', name:'получить опыт разнообразного выбора, понимания про себя, свои особенности, интересы;'},
     {field: 'initiative', name:'возможность проявлять и реализовывать инициативы;'},
-    {field: 'other_checked', name:'другое'}
   ];
   $scope.competitionsView = [
     {field: 'responsibility', name: 'ответственность, готовность принять риск на себя'},
@@ -29,7 +28,6 @@ function ProfileController($scope, $location, api, $routeParams, $sce) {
     {field: 'leadership', name:'лидерские качества'},
     {field: 'design', name:'проектное мышление'},
     {field: 'reflexivity', name:'рефлексивность'},
-    {field: 'other_ckecked', name:'другое'},
   ];
   $scope.spacesViewLong = [
     {field: 'masters', name:'трудовая деятельность (трудовые мастерские, работа в школьном кафе, в рубке, школьном издательстве)'},
@@ -57,7 +55,6 @@ function ProfileController($scope, $location, api, $routeParams, $sce) {
     {field: 'capms', name:'школьные лагеря'},
     {field: 'trips', name:'поездки'},
     {field: 'business_game', name:'деловая игра'},
-    {field: 'other_ckecked', name:'другое'},
   ];
 }
 module.exports = ProfileController;

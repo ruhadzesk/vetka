@@ -1,17 +1,21 @@
-<main class="home">
+<main class="home-page">
   <div class="content">
-    <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
-    <div class="header" ng-if="!token">
-      <form class="search" ng-submit="getItems(search)">
+
+    <div class="header">
+      <div class="logo">
+        <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
+      </div>
+      <form class="search" ng-submit="getItems(search)" ng-if="!token">
         <input class="search c4" type="text" ng-model="search" />
         <button class="search-button" type="submit">
           <img src="/static/inc/i/search.svg" />
         </button>
       </form>
-      <div class="button right join"><button ng-click="join()">Участвовать</button></div>
+      <div class="button right join" ng-if="!token">
+        <button ng-click="join()">Участвовать</button>
+      </div>
     </div>
 
-    <div class="logo" ng-if="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac tincidunt nisl. Donec quis porta elit, sed convallis ligula. Nam id venenatis massa. Mauris aliquam vel sapien quis imperdiet. Vestibulum quis rutrum ex, vitae sodales diam. Curabitur vehicula dignissim risus, volutpat auctor erat. Morbi justo quam, blandit eu malesuada ut, faucibus ac felis. Ut semper congue aliquam. Ut ultrices ultrices lorem, non scelerisque ante vulputate quis. Fusce gravida magna ut orci fermentum, et rhoncus tellus finibus. Cras eu pretium orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra</div>
     <div class="list" ng-if="items">
       <div class="item" ng-repeat="item in items">
         <div class="stick" ng-class="item.type">{{item.type}}</div>
@@ -21,9 +25,9 @@
         </div>
         <div class="article">
           <div class="name">{{item.name}}</div>
-          <div class="text">Год окончпния школы: {{item.graduated}}</div>
-          <div class="text">Образование: {{item.university}} ОбразованиеОбраз ованиеОбразован иеОбразование Образование</div>
-          <div class="text">Профессиональная деятельность: {{item.profession}}</div>
+          <div class="text-block">Год окончпния школы: {{item.graduated}}</div>
+          <div class="text-block">Образование: {{item.university}} ОбразованиеОбраз ованиеОбразован иеОбразование Образование</div>
+          <div class="text-block">Профессиональная деятельность: {{item.profession}}</div>
           <div class="button" ng-if="item.status == 'published'" >
             <button ng-class="item.type" ng-click="goToProfile(item)">Читать</button>
           </div>
@@ -33,11 +37,13 @@
         </div>
       </div>
     </div>
+
     <div class="no-posts" ng-if="!items">
       <img src="/static/inc/i/head.svg" />
       <img src="/static/inc/i/body.svg" />
-      <div class="text">Нет результатов. Попробуйте другие критерии поиска.</div>
+      <div class="text-block">Нет результатов. Попробуйте другие критерии поиска.</div>
     </div>
+
     <div class="adminLink" ng-click="goAdmin()" ng-if="!token">Модераторам</div>
     <div class="adminLink" ng-click="logout()" ng-if="token">Выйти</div>
   </div>

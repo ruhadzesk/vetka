@@ -1,0 +1,12 @@
+[Unit]
+Description=sorm3-puff - sync gui queries with olap tasks
+After=postgresql.service
+
+[Service]
+ExecStart=/usr/bin/node /home/vetka/vetka/server/server.js
+Type=idle
+Restart=always
+RestartSec=300
+
+[Install]
+WantedBy=multi-user.target

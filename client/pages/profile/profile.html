@@ -1,19 +1,19 @@
-<main class="profile">
+<main class="profile-page">
   <div class="photo" ng-if="profile.photo">
      <img ng-src="/img/{{profile.photo}}">
   </div>
   <div class="header">
     <div class="info">
       <div class="name">{{profile.name}}</div>
-      <div class="text"><img class="logo" src="static/inc/i/graduated.svg" /><span>{{profile.graduated}}</span></div>
-      <div class="text"><img class="logo" src="static/inc/i/university.svg" /><span>{{profile.university}}</span></div>
-      <div class="text"><img class="logo" src="static/inc/i/profession.svg" /><span>{{profile.profession}}</span></div>
+      <div class="text"><img src="static/inc/i/graduated.svg" /><span>{{profile.graduated}}</span></div>
+      <div class="text"><img src="static/inc/i/university.svg" /><span>{{profile.university}}</span></div>
+      <div class="text"><img src="static/inc/i/profession.svg" /><span>{{profile.profession}}</span></div>
     </div>
   </div>
   <div class="content">
     <a href="/"><img class="logo" src="static/inc/i/logo_white.svg" /></a>
     <div class="profile" ng-if="profile.type == 'video'">
-     <iframe width="560" height="315" ng-src="{{profile.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <iframe width="1200" height="680" ng-src="{{profile.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="profile" ng-if="profile.type == 'text'">
       <h1>{{profile.text_name}}</h1>

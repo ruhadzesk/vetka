@@ -1,5 +1,5 @@
 require('./form.less');
-// require('./checkbox.less');
+
 var dropzone = require('dropzone');
 
 FormController.$inject = ['$scope', '$location', '$routeParams', '$localStorage', 'api'];
@@ -281,14 +281,17 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
     {field: 'business_game', name:'деловая игра'},
     {field: 'other_ckecked', name:'другое'},
   ];
-  dropzone.options.avatar = {
+  var myDropzone = new dropzone("#avatar", {
+    url: "/upload/",
+    maxFilesize: 0.5,
     accept: function(file, done) {
       $scope.model.photo = file.name;
       $scope.$apply();
       done();
     },
-    dictDefaultMessage: '',
-  };
+    dictDefaultMessage: 'asd',
+    previewTemplate: '<div class="dz-error-message"><span data-dz-errormessage></span></div>'
+  });
   $scope.token = $localStorage.token;
   $scope.step = 1;
   $scope.next = function() {
