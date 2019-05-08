@@ -59,6 +59,27 @@ END;
 $$
 LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
 
+CREATE OR REPLACE function core.profile_delete(
+  IN i_params json,
+  OUT o_result json
+)
+AS $$
+BEGIN
+
+    PERFORM 1 FROM core.tokens
+        WHERE token = i_params->>'token';
+    IF NOT FOUND THEN
+      RAISE EXCEPTION USING
+        ERRCODE = 401,
+        MESSAGE = 'unautorized',
+        DETAIL = '';
+    ELSE
+        DELETE FROM core.profiles
+          WHERE id = (i_params->>'id')::int;
+    END IF;
+END;
+$$
+LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
 
 CREATE OR REPLACE function core.profile_publish(
   IN i_params json,
@@ -161,7 +182,7 @@ $$
 LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
 
 
-CREATE OR REPLACE function core.person_add(
+CREATE OR REPLACE function core.profile_add(
   IN i_params jsonb,
   OUT o_result int
 )

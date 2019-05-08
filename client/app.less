@@ -13,6 +13,9 @@ body {
 }
 .content {
   width: 1200px;
+  @media (max-width: 1200px) {
+    width: 800px;
+  }
   margin: auto;
   padding-bottom: 50px;
   .header {
@@ -97,14 +100,15 @@ input {
   &.left {
     float: left;
   }
+  // width: 165px;
   // margin: auto;
   // margin-top: 10px;
-  // width: 165px;
+  width: 165px;
   button {
     cursor: pointer;
     height: 42px;
     // background: #4BE1AB;
-    // width: 165px;
+    width: 165px;
     border-radius: 100px;
     border: none;
     font-size: 20px;

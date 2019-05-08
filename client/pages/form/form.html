@@ -34,7 +34,7 @@
       </field>
       <field class="checkbox">
         <input type="checkbox" ng-model="model.children" />
-        <span>Есть дети?</span>
+        <span>Есть ли дети?</span>
       </field>
       <field ng-if="model.children">
         <label>Учатся (учились) ли они в школе Самоопределения?</label>
@@ -154,7 +154,7 @@
             <textarea ng-model="model.most_needed_quality"> </textarea>
           </field>
           <field class="checkboxs">
-            <label>(МЕСТА!!!)Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
+            <label>Наличие каких школьных пространств, особенностей уклада школы, событий, образовательных форм, на Ваш взгляд, влияло на Ваше развитие и самоопределение?</label>
             <div class="checkbox-block" ng-repeat="space in spacesViewLong">
               <input type="checkbox"  ng-model="model.spaces[space.field]" />
               <div class="checkbox-label">{{space.name}}</div>

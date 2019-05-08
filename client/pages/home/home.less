@@ -2,13 +2,14 @@
 
   .header {
     .join {
-      margin-left: auto;
+      margin-left: 20px;
       button {
-        background: linear-gradient(270deg, #4481EB 0%, #04BEFE 100%);
+        background: linear-gradient(270deg, #FCCC00 0%, #FEE74E 100%);
+        color: black;
       }
     }
     .search {
-      margin-left: 10px;
+      margin-left: auto;
       button {
         background: #3B55E6;
         color: white;
@@ -16,7 +17,7 @@
         width: 34px;
         border: none;
         border-radius: 100px;
-        margin-left: -40px;
+        margin-left: -43px;
       }
     }
   }
@@ -28,6 +29,12 @@
     position: relative;
     margin-top: 80px;
     display: flex;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      margin: auto;
+      margin-top: 80px;
+      width: 590px;
+    }
     .stick {
       z-index: 1;
       font-size: 24px;
@@ -67,6 +74,10 @@
     .picture {
       width: 500px;
       height: 500px;
+      @media (max-width: 1200px) {
+        width: 590px;
+        height: 290px;
+      }
       overflow: hidden;
       position: relative;
       display: inline-block;
@@ -88,20 +99,43 @@
       color: #222328;
       margin: auto;
       flex-basis: 600px;
+      @media (max-width: 1200px) {
+        padding: 20px 60px;
+        flex-basis: 0;
+      }
       .name {
         font-weight: 900;
         font-size: 32px;
         line-height: 39px;
         padding-bottom: 30px;
+        @media (max-width: 1200px) {
+          font-weight: 900;
+          font-size: 24px;
+          line-height: 39px;
+          padding-bottom: 15px;
+        }
       }
       .text-block {
         font-size: 24px;
         line-height: 39px;
-        padding-bottom: 20px
+        padding-bottom: 20px;
+        @media (max-width: 1200px) {
+          font-size: 20px;
+          line-height: 39px;
+          padding-bottom: 10px
+        }
+      }
+      @media (max-width: 1200px) {
+        .button {
+          margin: auto;
+        }
       }
       .button {
         // position: absolute;
         // bottom: 40px;
+        button {
+          width: 160px;
+        }
         margin-top: 20px;
         .profile {
           background-color: #FE5339;
@@ -111,6 +145,10 @@
         }
         .video {
           background-color: #4BE1AB;
+        }
+        .delete  {
+          background: #992C1B;
+          margin-left: 20px
         }
       }
     }

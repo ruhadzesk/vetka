@@ -5,7 +5,7 @@ var dropzone = require('dropzone');
 FormController.$inject = ['$scope', '$location', '$routeParams', '$localStorage', 'api'];
 function FormController($scope, $location, $routeParams, $localStorage, api) {
   $scope.send = function() {
-    api.exec("core.person_add", $scope.model).then(function(result){
+    api.exec("core.profile_add", $scope.model).then(function(result){
       $location.path('/');
     });
   };
@@ -123,117 +123,118 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
     api.exec("core.profile_get", {id: $routeParams.id}).then(function(result){
       $scope.model = result;
     });
-  } else {
-    $scope.model= {
-      name: 'Иванов Иван Иванович',
-      name_changed: true,
-      name_old: 'Петров',
-      graduated: 1999,
-      profession: 'Инженер',
-      university: 'МГУ',
-      children: true,
-      children_study: 'other',
-      children_other: 'Придурки',
-      contacts: 'teachers',
-      phone: '89160131977',
-      email: 'asd@gmail.com',
-      confirm: true,
-      photo: '',
-      type: 'profile',
-      //video
-      confirm_email: '',
-      //text
-      text_name: '',
-      text: '',
-      // profile
-      //step1
-      conditions: {
-        laws: true,
-        humanity: true,
-        moral: true,
-        freedom: true,
-        choise: true,
-        initiative: true,
-        other_checked: true,
-        other: 'condition 1'
-      },
-      competitions: {
-        responsibility: true,
-        perseverance: true,
-        creativity: true,
-        openness: true,
-        independence: true,
-        prioritization: true,
-        communicativeness: true,
-        analitial: true,
-        teamwork: true,
-        leadership: true,
-        design: true,
-        reflexivity: true,
-        other_ckecked: true,
-        other: 'competition 1'
-      },
-      most_needed_quality: 'most_needed_quality',
-      spaces: {
-        masters: true,
-        clubs: true,
-        constitution: true,
-        charity: true,
-        self_assessment: true,
-        atmosphere: true,
-        projects: true,
-        planning: true,
-        expeditions: true,
-        deepenig: true,
-        historic_games: true,
-        museems: true,
-        sports: true,
-        mass_media: true,
-        internships: true,
-        lyceum: true,
-        celebration: true,
-        theater: true,
-        summer_school: true,
-        hike: true,
-        capms: true,
-        trips: true,
-        business_game: true,
-        other_ckecked: true,
-        other: 'spaces 1'
-      },
-      deficiencies: 'deficiencies',
-      teachers: 'teachers',
-      profession_choose: 'profession_choose',
-      //step2
-      study_after_school: 'study_after_school',
-      university_for_admission: 'university_for_admission',
-      change_profession: 'change_profession',
-      change_university: 'change_university',
-      profession_quality: 'profession_quality',
-      university_quality: 'university_quality',
-      profession_interests: 'profession_interests',
-      profession_education_points: 'profession_education_points',
-      high_school_graduate: 'high_school_graduate',
-      schoolmates: 'schoolmates',
-      school_alteatives: 'school_alteatives',
-      students_help: {
-          conference: true,
-          internship: true,
-          master_class_checked: true,
-          master_class: 'master_class',
-          lyceum: true,
-          lecture: true,
-          other_checked: true,
-          other: 'students_help'
-      }
-    };
   }
+  // } else {
+  //   $scope.model= {
+  //     name: 'Иванов Иван Иванович',
+  //     name_changed: true,
+  //     name_old: 'Петров',
+  //     graduated: 1999,
+  //     profession: 'Инженер',
+  //     university: 'МГУ',
+  //     children: true,
+  //     children_study: 'other',
+  //     children_other: 'Придурки',
+  //     contacts: 'teachers',
+  //     phone: '89160131977',
+  //     email: 'asd@gmail.com',
+  //     confirm: true,
+  //     photo: '',
+  //     type: 'profile',
+  //     //video
+  //     confirm_email: '',
+  //     //text
+  //     text_name: '',
+  //     text: '',
+  //     // profile
+  //     //step1
+  //     conditions: {
+  //       laws: true,
+  //       humanity: true,
+  //       moral: true,
+  //       freedom: true,
+  //       choise: true,
+  //       initiative: true,
+  //       other_checked: true,
+  //       other: 'condition 1'
+  //     },
+  //     competitions: {
+  //       responsibility: true,
+  //       perseverance: true,
+  //       creativity: true,
+  //       openness: true,
+  //       independence: true,
+  //       prioritization: true,
+  //       communicativeness: true,
+  //       analitial: true,
+  //       teamwork: true,
+  //       leadership: true,
+  //       design: true,
+  //       reflexivity: true,
+  //       other_checked: true,
+  //       other: 'competition 1'
+  //     },
+  //     most_needed_quality: 'most_needed_quality',
+  //     spaces: {
+  //       masters: true,
+  //       clubs: true,
+  //       constitution: true,
+  //       charity: true,
+  //       self_assessment: true,
+  //       atmosphere: true,
+  //       projects: true,
+  //       planning: true,
+  //       expeditions: true,
+  //       deepenig: true,
+  //       historic_games: true,
+  //       museems: true,
+  //       sports: true,
+  //       mass_media: true,
+  //       internships: true,
+  //       lyceum: true,
+  //       celebration: true,
+  //       theater: true,
+  //       summer_school: true,
+  //       hike: true,
+  //       capms: true,
+  //       trips: true,
+  //       business_game: true,
+  //       other_checked: true,
+  //       other: 'spaces 1'
+  //     },
+  //     deficiencies: 'deficiencies',
+  //     teachers: 'teachers',
+  //     profession_choose: 'profession_choose',
+  //     //step2
+  //     study_after_school: 'study_after_school',
+  //     university_for_admission: 'university_for_admission',
+  //     change_profession: 'change_profession',
+  //     change_university: 'change_university',
+  //     profession_quality: 'profession_quality',
+  //     university_quality: 'university_quality',
+  //     profession_interests: 'profession_interests',
+  //     profession_education_points: 'profession_education_points',
+  //     high_school_graduate: 'high_school_graduate',
+  //     schoolmates: 'schoolmates',
+  //     school_alteatives: 'school_alteatives',
+  //     students_help: {
+  //         conference: true,
+  //         internship: true,
+  //         master_class_checked: true,
+  //         master_class: 'master_class',
+  //         lyceum: true,
+  //         lecture: true,
+  //         other_checked: true,
+  //         other: 'students_help'
+  //     }
+  //   };
+  // }
 
   $scope.conditionsView = [
     {field: 'laws', name: 'участвовать в создании законов общей школьной жизни, в решении важных для всего школьного сообщества вопросов, в том числе связанных с учебным процессом;'},
     {field: 'humanity', name:'получить опыт уважения человеческого достоинства и принятия другого человека таким, каков он есть;'},
     {field: 'moral', name:'возможность глубокого и неформального обсуждения мировоззренческих взглядов, этических проблем, нравственных ценностей;'},
-    {field: 'freedom', name:'возможность свободно высказывать свою точу зрения;'},
+    {field: 'freedom', name:'возможность свободно высказывать свою точку зрения;'},
     {field: 'choise', name:'получить опыт разнообразного выбора, понимания про себя, свои особенности, интересы;'},
     {field: 'initiative', name:'возможность проявлять и реализовывать инициативы;'},
     {field: 'other_checked', name:'другое'}
@@ -251,7 +252,7 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
     {field: 'leadership', name:'лидерские качества'},
     {field: 'design', name:'проектное мышление'},
     {field: 'reflexivity', name:'рефлексивность'},
-    {field: 'other_ckecked', name:'другое'},
+    {field: 'other_checked', name:'другое'},
   ];
   $scope.spacesViewLong = [
     {field: 'masters', name:'трудовая деятельность (трудовые мастерские, работа в школьном кафе, в рубке, школьном издательстве)'},
@@ -279,7 +280,7 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
     {field: 'capms', name:'школьные лагеря'},
     {field: 'trips', name:'поездки'},
     {field: 'business_game', name:'деловая игра'},
-    {field: 'other_ckecked', name:'другое'},
+    {field: 'other_checked', name:'другое'},
   ];
   var myDropzone = new dropzone("#avatar", {
     url: "/upload/",

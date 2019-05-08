@@ -12,8 +12,9 @@
   </div>
   <div class="content">
     <a href="/"><img class="logo" src="static/inc/i/logo_white.svg" /></a>
-    <div class="profile" ng-if="profile.type == 'video'">
-     <iframe width="1200" height="680" ng-src="{{profile.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="profile video" ng-if="profile.type == 'video'">
+      <!-- width="1200" height="680"  -->
+     <iframe ng-src="{{profile.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="profile" ng-if="profile.type == 'text'">
       <h1>{{profile.text_name}}</h1>
@@ -152,7 +153,6 @@
           <div class="checkbox-label2">прочитать лекцию или провести интерактивное занятие в Университете для старшеклассников</div>
         </div>
         <div class="checkbox-block">
-          <div class="checkbox-label2">другое</div>
           <div class="answer" ng-if="profile.students_help.other_checked">{{profile.students_help.other}}</div>
         </div>
       </field>

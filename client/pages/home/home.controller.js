@@ -21,6 +21,15 @@ function HomeController($scope, $location, $localStorage, api) {
     $location.path('/form/'+item.id);
   };
 
+  $scope.removeItem = function(item) {
+    if (confirm("Удалить анкету?")){
+      api.exec("core.profile_delete", {
+        token: $localStorage.token,
+        id: item.id
+      }).then($scope.getItems);
+    }
+  };
+
   $scope.join = function() {
     $location.path('/form');
   };
