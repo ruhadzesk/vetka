@@ -44,6 +44,12 @@ function HomeController($scope, $location, $localStorage, api) {
      $scope.getItems();
   };
 
+  $scope.types = {
+    video: 'Видео',
+    profile: 'Анкета',
+    text: 'Эссе'
+  };
+
   $scope.token = $localStorage.token;
   $scope.search = '';
   $scope.getItems();

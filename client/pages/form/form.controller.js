@@ -10,6 +10,14 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
     });
   };
 
+  $scope.valid = function() {
+    return $scope.model.name &&
+    $scope.model.graduated &&
+    $scope.model.profession &&
+    $scope.model.university &&
+    $scope.model.confirm;
+  };
+
   $scope.publish = function() {
     $scope.model.token = $localStorage.token;
     api.exec("core.profile_publish", $scope.model).then(function(result){
