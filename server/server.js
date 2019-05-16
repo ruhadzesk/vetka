@@ -9,6 +9,9 @@ const Pool = require('pg').Pool;
 const SERVER_PORT = 3000;
 
 const multer  = require('multer');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+// const { exec } = require('child_process');
 
 let upload = multer({storage: multer.diskStorage({
     destination: async function (req, file, cb) {
@@ -75,7 +78,9 @@ app.post(
     `/upload/`,
     upload.single('file'),
     async function(req, res, next) {
-      console.log(req, res)
+      // console.log(req, res)
+      console.log(req.file)
+      await exec(`exiftran -ai ${req.file.path}`);
     },
     async function(req, res) {
       res.json({
