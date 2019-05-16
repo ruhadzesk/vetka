@@ -293,10 +293,13 @@ function FormController($scope, $location, $routeParams, $localStorage, api) {
   var myDropzone = new dropzone("#avatar", {
     url: "/upload/",
     maxFilesize: 0.5,
-    accept: function(file, done) {
-      $scope.model.photo = file.name;
+    success: function(file, res) {
+      $scope.model.photo = res.filename;
       $scope.$apply();
-      done();
+    },
+    renameFile: function (file) {
+      let newName = new Date().getTime() + '_' + file.name;
+      return newName;
     },
     dictDefaultMessage: 'asd',
     previewTemplate: '<div class="dz-error-message"><span data-dz-errormessage></span></div>'

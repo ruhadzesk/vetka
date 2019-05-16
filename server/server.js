@@ -81,11 +81,11 @@ app.post(
       // console.log(req, res)
       console.log(req.file)
       await exec(`exiftran -ai ${req.file.path}`);
+      next();
     },
     async function(req, res) {
-      res.json({
-          uploaded: true
-      });
+      // res.json({success : "Uploaded Successfully", status : 200});
+      res.status(200).send( req.file );
     }
 );
 
