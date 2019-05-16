@@ -22,8 +22,7 @@
     </div>
     <div class="profile" ng-if="profile.type == 'profile'">
       <h1>Школа для меня</h1>
-
-      <field class="checkboxs">
+      <field class="checkboxs" ng-if="profile.conditionsCount || profile.conditions.other_checked">
         <label>Считаете ли вы, что в школе действительно создавались условия важные для развития и становления личности, личностного самоопределения учеников? Если да, то какие возможности давала школа каждому учащемуся?</label>
         <div class="checkbox-block" ng-repeat="condition in conditionsView">
           <div ng-if="profile.conditions[condition.field]" class="checkbox-label2">{{condition.name}}</div>
@@ -33,9 +32,9 @@
         </div>
       </field>
 
-      <field class="checkboxs">
+      <field class="checkboxs" ng-if="profile.competitionsCount || profile.competitions.other_checked">
         <label>Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
-        <div class="checkbox-block multiply" ng-repeat="competition in competitionsView">
+        <div ng-if="profile.competitions[competition.field]" class="checkbox-block multiply" ng-repeat="competition in competitionsView">
           <div class="checkbox-label2">{{competition.name}}</div>
         </div>
         <div class="checkbox-block" ng-if="profile.competitions.other_checked">
@@ -43,18 +42,18 @@
         </div>
       </field>
 
-      <field>
+      <field ng-if="profile.most_needed_quality">
         <label>Какие из этих качеств оказались самыми нужными в вашей взрослой жизни?</label>
         <div class="answer">{{profile.most_needed_quality}}</div>
       </field>
 
-      <field class="checkboxs">
-        <label>(МЕСТА!!!)Считаете ли вы, что школа способствовала развитию ваших личностных качеств, умений, компетенций? Каких именно?</label>
-        <div class="checkbox-block" ng-repeat="space in spacesViewLong">
+      <field class="checkboxs" ng-if="profile.spacesCount || profile.spaces.other_checked">
+        <label>Наличие каких школьных пространств, особенностей уклада школы, событий, образовательных форм, на Ваш взгляд, влияло на Ваше развитие и самоопределение?</label>
+        <div ng-if="profile.spaces[space.field]" class="checkbox-block" ng-repeat="space in spacesViewLong">
           <div class="checkbox-label2">{{space.name}}</div>
         </div>
         <br />
-        <div class="checkbox-block multiply" ng-repeat="space in spacesViewShort">
+        <div ng-if="profile.spaces[space.field]" class="checkbox-block multiply" ng-repeat="space in spacesViewShort">
           <div class="checkbox-label2">{{space.name}}</div>
         </div>
         <div class="checkbox-block" ng-if="profile.spaces.other_checked">
@@ -62,94 +61,94 @@
         </div>
       </field>
 
-      <field>
+      <field ng-if="profile.deficiencies">
         <label>Чего, важного для вашего развития, не хватало в  школе, какие дефициты обнаружились после ее окончания, что вы посоветуете изменить в школьной жизни?</label>
         <div class="answer">{{profile.deficiencies}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.teachers">
         <label>Общение с кем из учителей было для вас особенно важным, почему?</label>
         <div class="answer">{{profile.teachers}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.profession_choose">
         <label>Помогла ли школа определить будущую профессиональную область? Каким образом? Что, на ваш взгляд, важно делать в школе в этом направлении?</label>
         <div class="answer">{{profile.profession_choose}}</div>
       </field>
 
       <h1>Я для школы</h1>
 
-      <field>
+      <field ng-if="profile.study_after_school">
         <label>Где, когда и чему вы учились или учитесь после школы?</label>
         <div class="answer">{{profile.study_after_school}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.university_for_admission">
         <label>Если учитесь сейчас или закончили недавно, можете ли посоветовать старшеклассникам поступать в это учебное заведение? На какой факультет?</label>
         <div class="answer">{{profile.university_for_admission}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.change_profession">
         <label>Меняли ли профессиональную траекторию в жизни, осваивали ли новое дело уже взрослым? Почему, зачем, довольны ли? Считаете ли вы, что старшеклассников следует готовить к тому, что в течение жизни, возможно, придётся менять профессию, род занятий?</label>
         <div class="answer">{{profile.change_profession}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.change_university">
         <label>Приходилось ли Вам бросать учебу, менять учебное заведение? Почему? Страшно ли это?</label>
         <div class="answer">{{profile.change_university}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.profession_quality">
         <label>Какие качества, навыки считаете важными для своей профессиональной области? Как их можно, на ваш взгляд, наращивать в школе?</label>
         <div class="answer">{{profile.profession_quality}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.university_quality">
         <label>Какие предметные умения, знания важны для поступления и успешного обучения в учебном заведении, которое вы закончили или в котором вы учитесь сейчас?</label>
         <div class="answer">{{profile.university_quality}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.profession_interests">
         <label>Что самое интересное в Вашей профессии? Что бы вы посоветовали, или от чего бы предостерегли тех, кто хочет начать этим заниматься?</label>
         <div class="answer">{{profile.profession_interests}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.profession_education_points">
         <label>Какие шаги, на ваш взгляд, можно сделать для того, чтобы узнать больше о профессии, понять, подходит ли она тебе?</label>
         <div class="answer">{{profile.profession_education_points}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.high_school_graduate">
         <label>Советуете ли вы на основе своего опыта заканчивать 11 классов или после 9 поступать в среднее учебное заведение?</label>
         <div class="answer">{{profile.high_school_graduate}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.schoolmates">
         <label>Важен ли для вас и после школы круг школьного общения, школьной дружбы?</label>
         <div class="answer">{{profile.schoolmates}}</div>
       </field>
 
-      <field>
+      <field ng-if="profile.school_alteatives">
         <label>Зачем нужна школа сегодня, когда существуют другие возможности освоения знаний?</label>
         <div class="answer">{{profile.school_alteatives}}</div>
       </field>
 
-      <field class="checkboxs">
+      <field class="checkboxs" ng-if="profile.students_helpCount">
         <label>Готовы ли вы помочь сегодняшним школьникам чем-то из перечисленного:</label>
-        <div class="checkbox-block">
+        <div class="checkbox-block" ng-if="profile.students_help.conference">
           <div class="checkbox-label2">прийти в школу пообщаться с нынешними учениками, ответить на вопросы, рассказать о профессии или своем увлечении</div>
         </div>
-        <div class="checkbox-block">
+        <div class="checkbox-block" ng-if="profile.students_help.internship">
           <div class="checkbox-label2">принять старшеклассника на короткую стажировку</div>
         </div>
-        <div class="checkbox-block">
+        <div class="checkbox-block" ng-if="profile.students_help.master_class_checked">
           <div class="checkbox-label2">провести занятие или мастер-класс</div>
-          <div class="answer" ng-if="profile.students_help.master_class_checked">{{profile.students_help.master_class}}</div>
+          <div class="answer">{{profile.students_help.master_class}}</div>
         </div>
-        <div class="checkbox-block">
+        <div class="checkbox-block" ng-if="profile.students_help.lyceum">
           <div class="checkbox-label2">поучаствовать в Лицее, исторической игре или другом событии</div>
         </div>
-        <div class="checkbox-block">
+        <div class="checkbox-block" ng-if="profile.students_help.lecture">
           <div class="checkbox-label2">прочитать лекцию или провести интерактивное занятие в Университете для старшеклассников</div>
         </div>
         <div class="checkbox-block">

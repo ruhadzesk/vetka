@@ -3,8 +3,24 @@ require('./profile.less');
 ProfileController.$inject = ['$scope', '$location', 'api', '$routeParams', '$sce'];
 function ProfileController($scope, $location, api, $routeParams, $sce) {
   api.exec("core.profile_get", {id: $routeParams.id}).then(function(result){
+    result.video = $sce.trustAsResourceUrl(result.video);
+    result.conditionsCount = 0;
+    for (var condition in result.conditions) {
+        result.conditions[condition] && result.conditionsCount++;
+    }
+    result.competitionsCount = 0;
+    for (var competition in result.competitions) {
+        result.competitions[competition] && result.competitionsCount++;
+    }
+    result.spacesCount = 0;
+    for (var space in result.spaces) {
+        result.spaces[space] && result.spacesCount++;
+    }
+    result.students_helpCount = 0;
+    for (var help in result.students_help) {
+        result.students_help[help] && result.students_helpCount++;
+    }
     $scope.profile = result;
-    $scope.profile.video = $sce.trustAsResourceUrl( $scope.profile.video);
   });
 
   $scope.conditionsView = [

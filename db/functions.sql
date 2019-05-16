@@ -5,7 +5,7 @@ CREATE OR REPLACE function core.login(
 AS $$
 DECLARE _token text;
 BEGIN
-  IF i_params->>'user' = 'admin' AND md5(i_params->>'password') = 'C9175D1564F180C2F759AEB3E973F8AD' THEN
+  IF i_params->>'user' = 'admin' AND md5(i_params->>'password') = 'c9175d1564f180c2f759aeb3e973f8ad' THEN
     INSERT INTO core.tokens VALUES(
         md5(random()::text))
     RETURNING token INTO _token;
