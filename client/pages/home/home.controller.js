@@ -4,6 +4,7 @@ HomeController.$inject = ['$scope', '$location', '$localStorage', 'api'];
 function HomeController($scope, $location, $localStorage, api) {
 
   $scope.getItems = function(search) {
+    if (search) $scope.intro = false;
     api.exec("core.profile_list", {
       token: $localStorage.token,
       status: $localStorage.token ? 'new' : 'published',
@@ -52,6 +53,7 @@ function HomeController($scope, $location, $localStorage, api) {
 
   $scope.token = $localStorage.token;
   $scope.search = '';
+  $scope.intro = true;
   $scope.getItems();
 }
 module.exports = HomeController;
