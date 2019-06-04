@@ -8,6 +8,9 @@
       <div class="button right join" ng-if="!token">
         <button ng-click="join()">Участвовать</button>
       </div>
+      <div class="button right join news" ng-if="token">
+        <button ng-click="goToNewsForm()">Добавить новость</button>
+      </div>
       <form class="search" ng-submit="getItems(search)" ng-if="!token">
         <input class="search c4" type="text" ng-model="search" placeholder="образование, деятельность и прочее..."/>
         <button class="search-button" type="submit">
@@ -36,19 +39,30 @@
           <img ng-if="item.photo != ''" ng-src="img/{{item.photo}}"  />
           <img class="no-user" ng-if="item.photo == ''" src="static/inc/i/no-user.svg" />
         </div>
-        <div class="article">
+        <div class="article" ng-if="item.type != 'news'">
           <div class="name">{{item.name}}</div>
           <div class="text-block">Год выпуска: {{item.graduated}}</div>
           <div class="text-block">Образование: {{item.university}} </div>
           <div class="text-block">Профессиональная деятельность: {{item.profession}}</div>
-          <div class="button" ng-if="item.status == 'published'" >
-            <button ng-class="item.type" ng-click="goToProfile(item)">Читать</button>
-          </div>
-          <div class="button" ng-if="item.status == 'new'" >
-            <button ng-class="item.type" ng-click="goToProfileEdit(item)">Модерировать</button>
-            <button class="delete" ng-click="removeItem(item)">Удалить</button>
+          <div class="button"  >
+            <button ng-if="item.status == 'published'" ng-class="item.type" ng-click="goToProfile(item)">Читать</button>
+            <button ng-if="token" ng-class="item.type" ng-click="goToProfileEdit(item)">Редактировать</button>
+            <button ng-if="token" class="delete" ng-click="removeItem(item)">Удалить</button>
           </div>
         </div>
+        <div class="article" ng-if="item.type == 'news'">
+          <div class="name">{{item.header}}</div>
+          <div class="text-block">Когда: {{item.date | date:'dd.MM.yyyy'}}, {{item.time}}</div>
+          <div class="text-block">Где: {{item.place}} </div>
+          <div class="button" ng-if="item.type == 'news'" >
+            <button ng-class="item.type" ng-click="goToNews(item)">Читать</button>
+          </div>
+        </div>
+        <div class="views">
+          <div class="eye">
+            <img src="static/inc/i/eye.svg" />
+          </div>
+          {{item.views}}</div>
       </div>
     </div>
 
@@ -57,8 +71,11 @@
       <img src="/static/inc/i/body.svg" />
       <div class="text-block">Нет результатов. Попробуйте другие критерии поиска.</div>
     </div>
-
     <div class="adminLink" ng-click="goAdmin()" ng-if="!token">Модераторам</div>
-    <div class="adminLink" ng-click="logout()" ng-if="token">Выйти</div>
+    <div class="adminLink"  ng-if="token">
+      <a ng-if="mode=='default'" ng-click="setMode('moder')">на модерации</a>
+      <a ng-if="mode=='moder'" ng-click="setMode('default')">опубликованные</a>
+      <br />
+      <a ng-click="logout()">Выйти&nbsp;</a></div>
   </div>
 </main>

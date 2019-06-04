@@ -47,9 +47,25 @@ CREATE TABLE core.profiles(
   status text, -- pending, approved
   capture_time timestamp,
   approved_time timestamp,
+  views int DEFAULT 0,
   search tsvector
 );
 
 CREATE TABLE core.tokens(
   token text
+);
+
+CREATE TABLE core.news(
+  id serial,
+  photo text,
+  date date,
+  time text,
+  place text,
+  header text,
+  content text,
+  video text,
+  src jsonb,
+  capture_time timestamp,
+  views int DEFAULT 0,
+  search tsvector
 );

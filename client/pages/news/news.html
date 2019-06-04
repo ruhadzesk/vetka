@@ -1,0 +1,22 @@
+<main class="profile-page">
+  <div class="photo" ng-if="news.photo">
+     <img ng-src="/img/{{news.photo}}">
+  </div>
+  <div class="header">
+    <div class="info">
+      <div class="name">{{news.header}}</div>
+      <div class="text"><img src="static/inc/i/date.svg" /><span>{{news.date | date:'dd.MM.yyyy'}}, {{news.time}}</span></div>
+      <div class="text"><img src="static/inc/i/place.svg" /><span>{{news.place}}</span></div>
+    </div>
+  </div>
+  <div class="content">
+    <a href="/"><img class="logo" src="static/inc/i/logo_white.svg" /></a>
+    <div class="profile" >
+      <div class="answer">{{news.content}}</div>
+    </div>
+    <div class="video" ng-if="news.video">
+     <iframe ng-src="{{news.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <a ng-repeat="src in news.src" href="{{src.link}}" target="_blank">{{src.name}} </a>
+  </div>
+</main>

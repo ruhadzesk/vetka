@@ -35,11 +35,119 @@ BEGIN
     END IF;
   END IF;
   SELECT json_agg(data) FROM (
-    SELECT *
+    SELECT
+      id,
+      capture_time,
+      type,
+      views,
+
+      name,
+      name_changed,
+      name_old,
+      graduated,
+      profession,
+      university,
+      children,
+      children_study,
+      children_other,
+      contacts,
+      phone,
+      email,
+      photo,
+      confirm,
+      confirm_email,
+      video,
+      text_name,
+      profile_text,
+      conditions,
+      competitions ,
+      most_needed_quality,
+      spaces,
+      deficiencies,
+      teachers,
+      profession_choose,
+      study_after_school,
+      university_for_admission,
+      change_profession,
+      change_university,
+      profession_quality,
+      university_quality,
+      profession_interests,
+      profession_education_points,
+      high_school_graduate,
+      schoolmates,
+      school_alteatives,
+      students_help,
+      status,
+      approved_time,
+      NULL as photo,
+      NULL as date,
+      NULL as time,
+      NULL as place,
+      NULL as header,
+      NULL as content,
+      NULL as video,
+      NULL as src
       FROM core.profiles
-      WHERE status = i_params->>'status'
-      AND (i_params->>'search' = '' OR search @@ to_tsquery(i_params->>'search'))
-      ORDER BY capture_time DESC
+        WHERE status = i_params->>'status'
+        AND (i_params->>'search' = '' OR search @@ to_tsquery(i_params->>'search'))
+    UNION ALL
+     SELECT
+      id,
+      capture_time,
+      'news' as type,
+      views,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL ,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      photo,
+      date,
+      time,
+      place,
+      header,
+      content,
+      video,
+      src
+    FROM core.news
+      WHERE (i_params->>'search' = '' OR search @@ to_tsquery(i_params->>'search'))
+      AND (i_params->>'status') = 'published'
+    ORDER BY capture_time DESC
   ) data INTO o_result;
 END;
 $$
@@ -51,6 +159,11 @@ CREATE OR REPLACE function core.profile_get(
 )
 AS $$
 BEGIN
+
+    UPDATE core.profiles
+      SET views = views + 1
+      WHERE id = (i_params->>'id')::int;
+
     SELECT row_to_json(p)
       FROM core.profiles as p
       WHERE id = (i_params->>'id')::int
@@ -323,3 +436,68 @@ BEGIN
 END;
 $$
 LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
+
+
+
+CREATE OR REPLACE function core.news_add(
+  IN i_params jsonb,
+  OUT o_result int
+)
+AS $$
+DECLARE _id int;
+BEGIN
+  INSERT INTO core.news (
+    photo,
+    date,
+    time,
+    place,
+    header,
+    content,
+    video,
+    src,
+    capture_time,
+    search
+  ) VALUES (
+    i_params->>'photo',
+    (i_params->>'date')::date,
+    i_params->>'time',
+    i_params->>'place',
+    i_params->>'header',
+    i_params->>'content',
+    i_params->>'video',
+    i_params->'src',
+    now(),
+    to_tsvector(concat_ws(' ',
+        i_params->>'photo',
+        i_params->>'date',
+        i_params->>'time',
+        i_params->>'place',
+        i_params->>'header',
+        i_params->>'content',
+        i_params->>'video'
+    ))
+  );
+
+END;
+$$
+LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
+
+
+CREATE OR REPLACE function core.news_get(
+  IN i_params json,
+  OUT o_result json
+)
+AS $$
+BEGIN
+  UPDATE core.news
+    SET views = views + 1
+    WHERE id = (i_params->>'id')::int;
+
+  SELECT row_to_json(p)
+    FROM core.news as p
+    WHERE id = (i_params->>'id')::int
+  INTO o_result;
+END;
+$$
+LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
+

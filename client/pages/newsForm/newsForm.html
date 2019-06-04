@@ -1,0 +1,63 @@
+<main class="form-page">
+  <div class="content">
+
+    <div class="header">
+      <a href="/"><img class="logo" src="static/inc/i/logo_black.svg" /></a>
+    </div>
+
+    <form class="form">
+
+      <h1>Добавить новость</h1>
+      <field>
+        <label>Фотография</label>
+        <!-- <form id="avatar" action="/upload/" class="dropzone" >
+        </form> -->
+        <div class="drop-area" ng-hide="model.photo">
+          <!-- <img ng-src="static/inc/i/avatar.svg" ng-if="!model.photo"> -->
+          <div id="avatar" > </div>
+        </div>
+        <img class="avatar-preview"ng-src="img/{{model.photo}}" ng-if="model.photo">
+      </field>
+      {{model.date}}
+      <field class="text multiply">
+        <label>Дата</label>
+        <input id="date" class="c3" type="text" ng-model="model.date"/>
+      </field>
+      <field class="text multiply">
+        <label>Время</label>
+        <input class="c2" type="text" ng-model="model.time"/>
+      </field>
+      <field class="text">
+        <label>Место</label>
+        <input class="c6" type="text" ng-model="model.place"/>
+      </field>
+      <field class="text">
+        <label>Заголовок</label>
+        <input class="c6" type="text" ng-model="model.header"/>
+      </field>
+      <field class="text" >
+        <label>Текст новости</label>
+        <textarea ng-model="model.content"> </textarea>
+      </field>
+      <field class="text">
+        <label>Ссылка на видео</label>
+        <input class="c6" type="text" ng-model="model.video"/>
+      </field>
+      <field class="text multiply" ng-repeat-start="src in model.src">
+        <label>Текст ссылки</label>
+        <input class="c2" type="text" ng-model="src.name"/>
+      </field>
+      <field class="text multiply" ng-repeat-end>
+        <label>Ссылка</label>
+        <input class="c3" type="text" ng-model="src.link"/>
+      </field>
+      <div class="button circle">
+        <button ng-click="addSrc()">+</button>
+      </div>
+      <div class="button center">
+        <button ng-click="send()" >Опубликовать</button>
+      </div>
+    </form>
+
+  </div>
+</main>

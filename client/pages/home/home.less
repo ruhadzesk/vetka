@@ -2,6 +2,12 @@
 
   .header {
     .join {
+      &.news {
+        width: 220px;
+        button {
+          width: 220px;
+        }
+      }
       margin-left: 20px;
       button {
         background: linear-gradient(270deg, #FCCC00 0%, #FEE74E 100%);
@@ -76,6 +82,12 @@
           border-left: 15px solid  #4BE1AB;
         }
       }
+      &.news {
+        background-color: #51DDE9;;
+        &:after {
+          border-left: 15px solid  #51DDE9;;
+        }
+      }
     }
     .picture {
       width: 500px;
@@ -137,6 +149,7 @@
       @media (max-width: 1200px) {
         .button {
           margin: auto;
+          button {width: 135px; font-size: 16px; }
         }
       }
       .button {
@@ -144,7 +157,11 @@
         // bottom: 40px;
         width: auto;
         button {
-          width: 160px;
+          // width: 160px;
+          @media (max-width: 1200px) {
+            margin-right: 10px;
+          }
+          margin-right: 20px;
         }
         margin-top: 20px;
         .profile {
@@ -156,10 +173,27 @@
         .video {
           background-color: #4BE1AB;
         }
+        .news {
+          background-color: #51DDE9;
+        }
         .delete  {
           background: #992C1B;
-          margin-left: 20px
+          // margin-left: 20px
         }
+      }
+    }
+    .views {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 24px;
+      line-height: 39px;
+      color: #A1A7DF;
+
+      .eye {
+        float: left;
+        padding-right: 5px;
+        padding-top: 2px;
       }
     }
   }
@@ -184,5 +218,6 @@
     padding: 15px;
     cursor: pointer;
     color: #A1A6BB;
+    text-align: right;
   }
 }

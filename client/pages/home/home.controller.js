@@ -4,10 +4,10 @@ HomeController.$inject = ['$scope', '$location', '$localStorage', 'api'];
 function HomeController($scope, $location, $localStorage, api) {
 
   $scope.getItems = function(search) {
-    if (search) $scope.intro = false;
+    if (search || $localStorage.token) $scope.intro = false;
     api.exec("core.profile_list", {
       token: $localStorage.token,
-      status: $localStorage.token ? 'new' : 'published',
+      status: $scope.mode === 'moder' ? 'new' : 'published',
       search: search || '',
     }).then(function(result){
       $scope.items = result;
@@ -17,11 +17,19 @@ function HomeController($scope, $location, $localStorage, api) {
   $scope.goToProfile = function(item) {
     $location.path('/profile/'+item.id);
   };
-
+  $scope.goToNews = function(item) {
+    $location.path('/news/'+item.id);
+  };
+  $scope.goToNewsForm = function() {
+    $location.path('/newsForm/');
+  };
   $scope.goToProfileEdit = function(item) {
     $location.path('/form/'+item.id);
   };
-
+  $scope.setMode = function(mode) {
+    $scope.mode = mode;
+    $scope.getItems();
+  };
   $scope.removeItem = function(item) {
     if (confirm("Удалить анкету?")){
       api.exec("core.profile_delete", {
@@ -48,10 +56,12 @@ function HomeController($scope, $location, $localStorage, api) {
   $scope.types = {
     video: 'Видео',
     profile: 'Анкета',
-    text: 'Эссе'
+    text: 'Эссе',
+    news: 'Новость',
   };
 
   $scope.token = $localStorage.token;
+  $scope.mode = 'default';
   $scope.search = '';
   $scope.intro = true;
   $scope.getItems();
