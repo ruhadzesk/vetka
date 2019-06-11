@@ -4,7 +4,9 @@ var datepicker = require('js-datepicker');
 newsFormController.$inject = ['$scope', '$location', '$routeParams', '$localStorage', 'api'];
 function newsFormController($scope, $location, $routeParams, $localStorage, api) {
   $scope.send = function() {
-    api.exec("core.news_add", $scope.model).then(function(result){
+    var method = ($scope.model.id) ? "core.news_edit" : "core.news_add";
+    $scope.model.token = $localStorage.token;
+    api.exec(method, $scope.model).then(function(result){
       $location.path('/');
     });
   };
@@ -19,6 +21,12 @@ function newsFormController($scope, $location, $routeParams, $localStorage, api)
     video: '',
     src: [],
   };
+
+  if ($routeParams.id) {
+    api.exec("core.news_get", {id: $routeParams.id}).then(function(result){
+      $scope.model = result;
+    });
+  }
 
   $scope.src = {
     link: '',

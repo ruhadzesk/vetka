@@ -20,8 +20,19 @@ function HomeController($scope, $location, $localStorage, api) {
   $scope.goToNews = function(item) {
     $location.path('/news/'+item.id);
   };
+  $scope.goToNewsEdit = function(item) {
+    $location.path('/newsForm/'+item.id);
+  };
   $scope.goToNewsForm = function() {
     $location.path('/newsForm/');
+  };
+  $scope.removeNews = function(item) {
+    if (confirm("Удалить новость?")){
+      api.exec("core.news_delete", {
+        token: $localStorage.token,
+        id: item.id
+      }).then($scope.getItems);
+    }
   };
   $scope.goToProfileEdit = function(item) {
     $location.path('/form/'+item.id);

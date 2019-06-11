@@ -40,6 +40,7 @@ BEGIN
       capture_time,
       type,
       views,
+      photo,
 
       name,
       name_changed,
@@ -53,7 +54,6 @@ BEGIN
       contacts,
       phone,
       email,
-      photo,
       confirm,
       confirm_email,
       video,
@@ -80,7 +80,6 @@ BEGIN
       students_help,
       status,
       approved_time,
-      NULL as photo,
       NULL as date,
       NULL as time,
       NULL as place,
@@ -97,7 +96,7 @@ BEGIN
       capture_time,
       'news' as type,
       views,
-      NULL,
+      photo,
       NULL,
       NULL,
       NULL,
@@ -136,7 +135,6 @@ BEGIN
       NULL,
       NULL,
       NULL,
-      photo,
       date,
       time,
       place,
@@ -446,28 +444,76 @@ CREATE OR REPLACE function core.news_add(
 AS $$
 DECLARE _id int;
 BEGIN
-  INSERT INTO core.news (
-    photo,
-    date,
-    time,
-    place,
-    header,
-    content,
-    video,
-    src,
-    capture_time,
-    search
-  ) VALUES (
-    i_params->>'photo',
-    (i_params->>'date')::date,
-    i_params->>'time',
-    i_params->>'place',
-    i_params->>'header',
-    i_params->>'content',
-    i_params->>'video',
-    i_params->'src',
-    now(),
-    to_tsvector(concat_ws(' ',
+  PERFORM 1 FROM core.tokens
+        WHERE token = i_params->>'token';
+    IF NOT FOUND THEN
+      RAISE EXCEPTION USING
+        ERRCODE = 401,
+        MESSAGE = 'unautorized',
+        DETAIL = '';
+    ELSE
+
+      INSERT INTO core.news (
+        photo,
+        date,
+        time,
+        place,
+        header,
+        content,
+        video,
+        src,
+        capture_time,
+        search
+      ) VALUES (
+        i_params->>'photo',
+        (i_params->>'date')::date,
+        i_params->>'time',
+        i_params->>'place',
+        i_params->>'header',
+        i_params->>'content',
+        i_params->>'video',
+        i_params->'src',
+        now(),
+        to_tsvector(concat_ws(' ',
+            i_params->>'photo',
+            i_params->>'date',
+            i_params->>'time',
+            i_params->>'place',
+            i_params->>'header',
+            i_params->>'content',
+            i_params->>'video'
+        ))
+      );
+  END IF;
+END;
+$$
+LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
+
+
+CREATE OR REPLACE function core.news_edit(
+  IN i_params jsonb,
+  OUT o_result int
+)
+AS $$
+DECLARE _id int;
+BEGIN
+  IF NOT FOUND THEN
+    RAISE EXCEPTION USING
+      ERRCODE = 401,
+      MESSAGE = 'unautorized',
+      DETAIL = '';
+  ELSE
+   UPDATE core.news SET
+    photo = i_params->>'photo',
+    date = (i_params->>'date')::date,
+    time = i_params->>'time',
+    place = i_params->>'place',
+    header = i_params->>'header',
+    content = i_params->>'content',
+    video = i_params->>'video',
+    src = i_params->'src',
+    capture_time = now(),
+    search = to_tsvector(concat_ws(' ',
         i_params->>'photo',
         i_params->>'date',
         i_params->>'time',
@@ -476,11 +522,12 @@ BEGIN
         i_params->>'content',
         i_params->>'video'
     ))
-  );
-
+    WHERE id = (i_params->>'id')::int;
+  END IF;
 END;
 $$
 LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
+
 
 
 CREATE OR REPLACE function core.news_get(
@@ -501,3 +548,25 @@ END;
 $$
 LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;
 
+
+CREATE OR REPLACE function core.news_delete(
+  IN i_params json,
+  OUT o_result json
+)
+AS $$
+BEGIN
+
+    PERFORM 1 FROM core.tokens
+        WHERE token = i_params->>'token';
+    IF NOT FOUND THEN
+      RAISE EXCEPTION USING
+        ERRCODE = 401,
+        MESSAGE = 'unautorized',
+        DETAIL = '';
+    ELSE
+        DELETE FROM core.news
+          WHERE id = (i_params->>'id')::int;
+    END IF;
+END;
+$$
+LANGUAGE 'plpgsql' VOLATILE SECURITY DEFINER;

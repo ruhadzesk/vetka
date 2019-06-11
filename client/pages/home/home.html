@@ -56,6 +56,8 @@
           <div class="text-block">Где: {{item.place}} </div>
           <div class="button" ng-if="item.type == 'news'" >
             <button ng-class="item.type" ng-click="goToNews(item)">Читать</button>
+            <button ng-if="token" ng-class="item.type" ng-click="goToNewsEdit(item)">Редактировать</button>
+            <button ng-if="token" class="delete" ng-click="removeNews(item)">Удалить</button>
           </div>
         </div>
         <div class="views">
