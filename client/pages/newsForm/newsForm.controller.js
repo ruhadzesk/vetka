@@ -56,7 +56,8 @@ function newsFormController($scope, $location, $routeParams, $localStorage, api)
 
   const picker = datepicker('#date', {
     onSelect: function(instance, date) {
-      $scope.model.date = date;
+      $scope.model.date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12);
+      $scope.$apply();
   }});
 
 }
