@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "ajv": "^6.5.2",
-    "angular": "^1.7.2",
+    "angular": "^1.8.0",
     "angular-file-upload": "^2.5.0",
     "angular-i18n": "^1.7.4",
     "angular-route": "^1.7.2",
