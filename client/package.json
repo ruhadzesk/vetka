@@ -2,7 +2,7 @@
   "name": "logx.client",
   "version": "1.0.0",
   "dependencies": {
-    "ajv": "^6.5.2",
+    "ajv": "^6.12.3",
     "angular": "^1.7.2",
     "angular-file-upload": "^2.5.0",
     "angular-i18n": "^1.7.4",
