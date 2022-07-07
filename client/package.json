@@ -11,7 +11,7 @@
     "d3": "^5.5.0",
     "dropzone": "^5.5.1",
     "js-datepicker": "^4.0.10",
-    "moment": "^2.21.0",
+    "moment": "^2.29.4",
     "ngstorage": "^0.3.11",
     "plural-ru": "^2.0.1",
     "sega3": "^8.3.0",
